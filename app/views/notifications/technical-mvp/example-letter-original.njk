@@ -1,0 +1,125 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+My notifications
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{% include "preferences/breadcrumbs/customer-view/when-we-speak-to-you.html" %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<div class="govuk-!-padding-bottom-2"></div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">Example letter</h1>
+
+          <p>Dear John Smith,</p>
+
+          <p>This is an example of how letters will be displayed when you check your notifications.</p>
+            <p>There is no other information. We are just using this text as an example.</p>
+
+        <h2 class="govuk-heading-l">Example title</h2>
+
+        <p>This is an example of how letters will be displayed when you check your notifications.</p>
+        <p>There is no other information. We are just using this text as an example.</p>
+
+        <div class="govuk-!-padding-bottom-6"></div>
+        <div class="govuk-button-group">
+        <button class="govuk-button" value= "true" data-module="govuk-button" style="margin-bottom:50px;" onclick="check3()" >Download</button>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Print
+        </button>
+        </div>
+
+
+</div>
+
+<div class="govuk-grid-column-one-third" style="text-align: left;">
+
+  <div class="width-container govuk-!-padding-4" style="border-radius:10px; background-color:#f3f2f1">
+    <div class="govuk-!-padding-bottom-2"></div>
+
+  <style>
+    .dwp-logo {max-width: 135px}
+    .dwp-logo {max-height: 113.5px}
+  
+    /* .dwp-logo {
+          float: right;
+      } */
+  
+    </style>
+  
+  <img src="/public/images/dwp-logo.png" class="dwp-logo">
+  
+  <div class="govuk-!-padding-bottom-6"></div>
+
+  <h3 class="govuk-heading-s">Your address</h3>
+
+  <p>John Smith<br>72 Guild Street<br>London<br>SE23 6FH</p>
+  
+  <h3 class="govuk-heading-s">Details</h3>
+  
+  <p>Testtown Job Centre<br>123 Test Street<br>Testtown<br>SE23 6FH</p>
+  
+  <p><a href="www.gov.uk">www.gov.uk</a></p>
+  
+  <p>Telephone: 0800 123 4567<br>
+    Textphone: 0800 765 4321<br>
+  </p>
+  
+  <p>Your reference: AB000000A</p>
+  
+  <p>26 February 2025</p>
+
+  <p class="govuk-body">
+    <a href="more-information" class="govuk-link" rel="noreferrer noopener" target="_blank">Additional information (opens in new tab)</a>
+  </p>
+
+  </div>
+  </div>
+  
+  </div>
+  </div>
+
+
+  
+
+<style>
+
+  .govuk-grid-column-two-thirds,
+  .govuk-grid-column-one-third, {
+    float: left;
+    width: 66.66%;
+  }
+
+  .govuk-grid-column-one-third {
+    width: 33.33%;
+  }
+
+  @media (max-width: 768px) {
+  .govuk-grid-column-two-thirds,
+  .govuk-grid-column-one-third {
+    float: none;
+    width: 100%;
+  } 
+  }
+
+.govuk-heading-xl {
+          padding-bottom: 10px;
+        }
+
+</style>
+
+
+{% endblock %}

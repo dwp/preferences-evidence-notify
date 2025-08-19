@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+{{ govukHeader({
+  homepageUrl: "index",
+  serviceName: "View your letters and messages",
+  serviceUrl: "#"
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+View your letters and messages
+{% endblock %}
+
+{% block beforeContent %}
+
+{%- from "hmrc/components/language-select/macro.njk" import hmrcLanguageSelect -%}
+
+{{
+  hmrcLanguageSelect({
+    language: 'en',
+    en: {
+      href: '?en'
+    },
+    cy: {
+      href: '?cy'
+    }
+  })
+}}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+{% block content %}
+
+
+
+
+<div class="govuk-!-padding-bottom-2"></div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <body>
+      <p>NINO Name</p>
+      <p>Your reference: XXXXXXXXX</p>
+      <p>Office Name<br>Office Name<br>Site Handling Site X<br>Wolverhampton<br>WV9X 1XX<br>Overflow line 5 if needed</p>
+      <p>Telephone: 0000 000 0000<br>Textphone: 0000 000 0000</p>
+      <a href="https://www.gov.uk/">Visit the GOV.UK website</a>
+      <p>Date issued: 1 January 2023</>
+      <h2>We have many different ways we can communicate with you</h2>
+      <p>If you would like Braille, British Sign Language, a hearing loop, translations, large print, audio or something else please tell us using the phone number at the top of this letter</p>
+      <h2>Main Title is Arial 18pt - do not use bold</h2>
+      <h3>Sub-title is Arial 14pt (3pt leading) - do not use bold</h3>
+      <p>Dear<p>
+      <p>General body text is Arial 12pt (2pt leading) across to the 138mm margin edge.</p>
+      <p>Consecutive paragraphs have 6pt leading, with a full 12pt line space before any section heading</p>
+      <h4>Section headings are Arial 12pt bold, with 6 pt following</h4>
+      <p>Sections break up the body text into smaller chunks</p>
+      <p>Bulleted text is formatted with:
+      <ul><li>standard 12pt bullet indented at 7.5mm</li><li>6pt leading on each bullet, and</li><li>full 12pt line space below final bullet</li></ul>
+      <p>Calculations are shown with the same type of table as meetings. All text is Arial 12pt with 6pt above and below.</p>
+      <p>The top and bottom lines are 2.25pt, with internal lines 1pt. No horizontal lines should be used.</p>
+      <p>Column 1 text is inset 1mm, column 2 text usually begins at 65mm but may be varied subject to table descriptions. The introductory sentence is followed by 6pt spacing rather than the full 12pt line break</p>
+      <p>You qualify for (benefit) at the following (frequency) rates:</p>
+      <table><tr><th>Rate</th><th>Amount<th></tr><tr><td>Daily living rate:</td><td><£amount></td></tr><tr><td>Mobility rate:</td><td><£amount></td></tr><tr><td>Total monthly rate:</td><td><£amount></td></tr></table>
+      <p>Yours sincerely <br>Office Manager</br></p>
+      <h2>If you disagree with a decision</h2>
+      <h3>You can ask us to explain why</h3>
+      <p>You, or someone who has the authority to act for you, can phone or write to us within one month of the date on this letter to ask us to explain our decision in writing.</p>
+      <h3>You can also ask us to reconsider a decision</h3>
+      <p>Tell us if you have more information or if you think we have overlooked something which might change the decision.  Do this within one month of the date on this letter. We will look at what you tell us and send you a letter to tell you what we have decided, and why. We call this letter a Mandatory Reconsideration Notice</p>
+      <h3>When you have done this you can appeal</h3>
+      <p>If you disagree with the Mandatory Reconsideration Notice, you can appeal to a tribunal. You must wait for the Mandatory Reconsideration Notice before you start an appeal.</p>
+      <h2>Treating people fairly</h2>
+      <p>We are committed to the Equality Act 2010 and treating people fairly. To find out more about this law, search 'Equality' on the <a href="https://www.gov.uk/">GOV.UK website</a></p>
+      <h2>Call charges</h2>
+      <p>Calls to 0800 numbers are free from UK personal mobiles and landlines.</p>
+      <h2>Why DWP needs personal information and how we treat it</h2>
+      <p>We treat personal information carefully. We may use it for any of our purposes. To learn more about information rights and how we use information, please see our <a href="https://www.gov.uk/dwp/personal-information-charter/">DWP Personal Information Charter</a></p>
+      </body>
+{% endblock %}

@@ -1,0 +1,270 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+{{ govukHeader({
+  homepageUrl: "index",
+  serviceName: "View your letters and messages",
+  serviceUrl: "#"
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+View your letters and messages
+{% endblock %}
+
+{% block beforeContent %}
+
+{%- from "hmrc/components/language-select/macro.njk" import hmrcLanguageSelect -%}
+
+{{
+  hmrcLanguageSelect({
+    language: 'en',
+    en: {
+      href: '?en'
+    },
+    cy: {
+      href: '?cy'
+    }
+  })
+}}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+{% block content %}
+
+
+
+        <h1 class="govuk-heading-xl">View your letters and messages</h1>
+
+        {# <body>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Filter
+              </span>
+            </summary>
+            <div class="govuk-details">
+    
+              <div class="govuk-!-padding-bottom-4"></div>
+  
+    <form id="filter-form">
+    <div class="moj-filter cv-filter" style="background-color:#f3f2f1">
+      <div class="moj-filter__content">
+        <!-- filter options -->
+        <div class="moj-filter__options">
+        <fieldset class="govuk-fieldset">
+        <!-- filter by read status -->
+  
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Filter by</legend>
+                  <div class="govuk-!-padding-bottom-2"></div>
+                    <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="status-read" name="status" type="radio" value="read">
+                            <label class="govuk-label govuk-radios__label" for="status-read">Read (0)</label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="status-unread" name="status" type="radio" value="unread">
+                            <label class="govuk-label govuk-radios__label" for="status-unread">Unread (1)</label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </fieldset> #}
+
+        {# <div class="govuk-!-padding-bottom-6"></div>
+
+        <!-- apply filter button -->
+
+        <div style="width: 100%;">
+          <button class="govuk-button" type="button" id="apply-filter" onclick="filterTable()">Apply filter</button>
+        </div>
+        <div class="centered-link">
+        <a href="#" class="govuk-link" onclick="resetFilter()">Clear all</a>
+        </div>
+        <div class="govuk-!-padding-bottom-2"></div>
+      </details>
+
+  
+     </form> #}
+
+
+
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header" style="padding-left:10px;">Message</th>
+          <th scope="col" class="govuk-table__header">Date</th>
+          <th scope="col" class="govuk-table__header" style="padding-right:10px;">Status</th>
+      </tr>
+  </thead>
+  <tbody class="govuk-table__body" id="table-body">
+    <tr class="govuk-table__row"  style="background-color:#f3f2f1">
+      <th class="govuk-table__header" style="padding-left:10px;"><p class="unbold">Job Seeker's Allowance<br>
+        <a href="example-letter" class="govuk-link" data-id="service-1">You have made a claim for Universal Credit</a></p></th>
+      <td scope="row" class="govuk-table__cell date-column" id="date-column"></td>
+        <td class="govuk-table__cell" style="padding-right:10px;" data-status="unread">
+        <strong class="govuk-tag custom-unread-tag">
+        Unread
+      </strong>
+        </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" style="padding-left:10px;"><p class="unbold">Employment Support Allowance (ESA)<br>
+        <a href="example-letter" class="govuk-link" data-id="service-2">You have made a claim for Universal Credit</a></p></th>
+      <td scope="row" class="govuk-table__cell date-column" id="date-column"></td>
+        <td class="govuk-table__cell" style="padding-right:10px;" data-status="read">
+        <strong class="govuk-tag custom-read-tag">
+        Read
+      </strong>
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<style>
+
+  @media (max-width: 960px) { /* Adjust breakpoint as needed */
+    .sidebar {
+      width: 100%;
+      margin-top: 20px; /* Adds spacing when stacked */
+    }
+    .leftside {
+      width: 100%;
+      margin-left: 40px; /* Adds spacing when stacked */
+    }
+  }
+
+  .govuk-table__cell {
+    padding-top: 18px;
+    padding-bottom: 20px;
+  }
+
+  .govuk-table__header {
+    padding-top: 18px;
+    padding-bottom: 8px;
+  }    
+
+  /* #apply-filter {
+    width: 100%;
+    display: block;
+  } */
+
+  /* .centered-link {
+    text-align: center;
+    margin-top: 20px;
+  } */
+
+  /* .date-column {
+    padding-left: 10px;
+  } */
+
+  .custom-unread-tag {
+    background-color: #1d70b8;
+    color: white;
+  }
+
+
+  .custom-read-tag {
+    background-color: #e5e6e7;
+    color: #282d30;
+  }
+
+  .govuk-body-message {
+     padding: 0;
+  }
+
+  .custom-padding .govuk-table__cell {
+        padding-bottom: 0px;
+      }
+
+  /* .govuk-table__header {
+    font-weight: normal !important;
+  } */
+
+  .p .unbold {
+    font-weight: normal !important;
+  }
+
+    .govuk-table__cell {
+    font-weight: normal !important;
+  }
+
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', (event) => {
+
+const today = new Date ();
+const formattedDate = today.toLocaleDateString('en-GB', {
+
+day: 'numeric',
+month: 'long',
+year: 'numeric'
+
+});
+
+const dateColumns = document.querySelectorAll('.date-column');
+dateColumns.forEach(column => {
+column.textContent = formattedDate;
+
+});
+
+document.getElementById('date-column').textContent = formattedDate;
+
+});
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   document.querySelectorAll('.gov-link').forEach(function (link) {
+//     const id = link.getAttribute('data-id');
+//     const row = link.closest('tr');
+//     const statusCell = row.querySelector('[data-status]');
+
+//     if (localStorage.getItem(id) === 'read') {
+//       if (row) {
+//         row.style.backgroundColor = '';
+//       }
+//         if (statusCell) {
+//           statusCell.setAttribute('data-status', 'read');
+//           statusCell.innerHTML = '<strong class="govuk-tag custom-read-tag">Read</strong>';
+//         }
+    
+//     else if (localStorage.getItem(id) !== 'read') {
+//         if (row) {
+//           row.style.backgroundColor = '#f3f2f1';
+//         }
+    
+//         if (statusCell) {
+//           statusCell.setAttribute('data-status', 'unread');
+//           statusCell.innerHTML = '<strong class="govuk-tag custom-unread-tag">Unread</strong>';
+//         }
+
+//         nk.addEventListener('click', function () {
+//           localStorage.setItem(id, 'read');
+
+//         });
+//       });
+//     });
+
+
+
+// function resetFilter() {
+//     document.getElementById('filter-form').reset();
+//     filterTable();
+// }
+</script>
+</body>
+
+
+
+{% endblock %}

@@ -18,6 +18,20 @@
 <div class="govuk-width-container">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <div role="alert">
+            <h2 class="govuk-error-summary__title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#">Select yes if you need to add another email address</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <h1 class="govuk-heading-l">Email address</h1>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
@@ -47,8 +61,9 @@
     </div>
 </div>
 
-<div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+
+<div class="govuk-form-group govuk-form-group--error">
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="email-hint email-error">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
       <h2 class="govuk-fieldset__heading">
         Do you need to add another email address?
@@ -57,6 +72,9 @@
     <div id="changedName-hint" class="govuk-hint">
       You can add up to three email addresses
     </div>
+    <p id="passport-issued-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Select yes if you need to add another email address
+    </p>
     <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="yes">
@@ -71,7 +89,6 @@
         </label>
       </div>
     </div>
-    
   </fieldset>
   
 </div>

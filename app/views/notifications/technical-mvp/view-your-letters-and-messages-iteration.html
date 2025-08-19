@@ -1,0 +1,216 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+{{ govukHeader({
+  homepageUrl: "index",
+  serviceName: "View your letters and messages",
+  serviceUrl: "#"
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+View your letters and messages
+{% endblock %}
+
+{% block beforeContent %}
+
+{%- from "hmrc/components/language-select/macro.njk" import hmrcLanguageSelect -%}
+
+{{
+  hmrcLanguageSelect({
+    language: 'en',
+    en: {
+      href: '?en'
+    },
+    cy: {
+      href: '?cy'
+    }
+  })
+}}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+{% block content %}
+
+
+
+<h1 class="govuk-heading-xl">View your letters and messages</h1>
+
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header" style="padding-left:10px;">Message</th>
+          <th scope="col" class="govuk-table__header">Date</th>
+          <th scope="col" class="govuk-table__header" style="padding-right:10px;">Status</th>
+      </tr>
+  </thead>
+  <tbody class="govuk-table__body" id="table-body">
+    <tr class="govuk-table__row unread"  data-id="service-1">
+      <th class="govuk-table__header" style="padding-left:10px;"><p class="unbold">Job Seeker's Allowance<br>
+        <a href="example-letter" class="gov-link" data-id="service-1">You have made a claim for Universal Credit</a></p></th>
+      <td scope="row" class="govuk-table__cell date-column" id="date-column"></td>
+        <td class="govuk-table__cell" style="padding-right:10px;" data-status="unread">
+        <strong class="govuk-tag custom-unread-tag">
+        Unread
+      </strong>
+        </td>
+    </tr>
+    <tr class="govuk-table__row read" data-id="service-2">
+      <th class="govuk-table__header" style="padding-left:10px;"><p class="unbold">Employment Support Allowance (ESA)<br>
+        <a href="example-letter" class="gov-link" data-id="service-2">You have made a claim for Universal Credit</a></p></th>
+      <td scope="row" class="govuk-table__cell date-column" id="date-column"></td>
+        <td class="govuk-table__cell" style="padding-right:10px;" data-status="read">
+        <strong class="govuk-tag custom-read-tag">
+        Read
+      </strong>
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<style>
+
+  @media (max-width: 960px) { /* Adjust breakpoint as needed */
+    .sidebar {
+      width: 100%;
+      margin-top: 20px; /* Adds spacing when stacked */
+    }
+    .leftside {
+      width: 100%;
+      margin-left: 40px; /* Adds spacing when stacked */
+    }
+  }
+
+  .govuk-table__cell {
+    padding-top: 18px;
+    padding-bottom: 20px;
+  }
+
+  .govuk-table__header {
+    padding-top: 18px;
+    padding-bottom: 8px;
+  }    
+
+  /* #apply-filter {
+    width: 100%;
+    display: block;
+  } */
+
+  /* .centered-link {
+    text-align: center;
+    margin-top: 20px;
+  } */
+
+  /* .date-column {
+    padding-left: 10px;
+  } */
+
+  .custom-unread-tag {
+    background-color: #1d70b8;
+    color: white;
+  }
+
+
+  .custom-read-tag {
+    background-color: #e5e6e7;
+    color: #282d30;
+  }
+
+  .govuk-body-message {
+     padding: 0;
+  }
+
+  .custom-padding .govuk-table__cell {
+        padding-bottom: 0px;
+      }
+
+  /* .govuk-table__header {
+    font-weight: normal !important;
+  } */
+
+  .p .unbold {
+    font-weight: normal !important;
+  }
+
+    .govuk-table__cell {
+    font-weight: normal !important;
+  }
+
+  .govuk-table__row.unread {
+    background-color: #f3f2f1;
+  }
+
+  .govuk-table__row.read {
+    background-color: transparent;
+  }
+
+
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', (event) => {
+
+const navType = performance.getEntriesByType('navigation')[0]?.type;
+if (navType === 'reload') {
+  localStorage.clear();
+}
+
+const today = new Date ();
+const formattedDate = today.toLocaleDateString('en-GB', {
+
+day: 'numeric',
+month: 'long',
+year: 'numeric'
+
+});
+
+const dateColumns = document.querySelectorAll('.date-column');
+dateColumns.forEach(column => {
+column.textContent = formattedDate;
+
+});
+
+document.getElementById('date-column').textContent = formattedDate;
+
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.gov-link').forEach(function (link) {
+    const id = link.getAttribute('data-id');
+    const row = document.querySelector(`tr[data-id="${id}"]`);
+    const statusCell = row.querySelector('[data-status]');
+
+    if (localStorage.getItem(id) === 'read') {
+        row.classList.remove('unread');
+        row.classList.add('read');
+          statusCell.setAttribute('data-status', 'read');
+          statusCell.innerHTML = '<strong class="govuk-tag custom-read-tag">Read</strong>';
+        }
+
+    link.addEventListener('click', function () {
+      localStorage.setItem(id, 'read');
+      row.classList.remove('unread');
+      row.classList.add('read');
+          statusCell.setAttribute('data-status', 'read');
+          statusCell.innerHTML = '<strong class="govuk-tag custom-read-tag">Read</strong>';
+        
+        });
+      });
+    });
+
+
+</script>
+</body>
+
+
+
+{% endblock %}

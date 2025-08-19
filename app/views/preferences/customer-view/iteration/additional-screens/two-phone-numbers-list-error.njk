@@ -6,7 +6,7 @@
 
 {% block beforeContent %}
 
-{% include "preferences/breadcrumbs/customer-view/email.html" %}
+{% include "preferences/breadcrumbs/customer-view/phone-number.html" %}
 
 
 {% endblock %}
@@ -14,27 +14,41 @@
 
 {% block content %}
 
-
 <div class="govuk-width-container">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">Email addresses</h1>
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <div role="alert">
+            <h2 class="govuk-error-summary__title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#">Select yes if you need to add another mobile phone number</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h1 class="govuk-heading-l">Mobile phone numbers</h1>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Email 1
+              Mobile number 1
             </dt>
             <dd class="govuk-summary-list__value">
-            <p class="govuk-body">sarah.lee@email.com</p>
+              <p class="govuk-body" id="mainPhoneDiv" name="mainPhoneDiv"></p>
             </dd>
             <dd class="govuk-summary-list__actions">
               <ul class="govuk-summary-list__actions-list">
                 <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> change email</span></a>
+                  <a class="govuk-link" href="phone-number">Change<span class="govuk-visually-hidden"> change mobile phone number</span></a>
                 </li>
                 <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> remove email</span></a>
+                  <a class="govuk-link" href="remove-phone">Remove<span class="govuk-visually-hidden"> remove mobile phone number</span></a>
                 </li>
               </ul>
             </dd>
@@ -42,35 +56,38 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Email 2
+              Mobile number 2
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-body">s.lee@university.ac.uk</p>
+              <p class="govuk-body">07700 900 982</p>
             </dd>
             <dd class="govuk-summary-list__actions">
               <ul class="govuk-summary-list__actions-list">
                 <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> change email</span></a>
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> change mobile phone number</span></a>
                 </li>
                 <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> remove email</span></a>
+                  <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> remove mobile phone number</span></a>
                 </li>
               </ul>
             </dd>
           </div>
-
+          
         </dl>
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="mobile-phone-number-hint mobile-phone-number-error">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
-                Do you need to add another email address?
+                Do you need to add another mobile phone number?
               </h2>
             </legend>
             <div id="changedName-hint" class="govuk-hint">
-              You can add up to three email addresses
+              You can add up to three mobile phone numbers
             </div>
+            <p id="passport-issued-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select yes if you need to add another mobile phone number
+            </p>
             <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="yes">
@@ -98,20 +115,16 @@
 </div>
 
 
-</div>
-
 <script>
-  var email = sessionStorage.getItem('email');
-
-var newEmailDiv = document.getElementById('newEmailDiv');
-
-if (newEmailDiv) {
-  if(email) {
-    newEmailDiv.innerHTML = email;
-  } else {
-    newEmailDiv.innerHTML = "sarah.phillips@example.com";
+  var phone = sessionStorage.getItem('phone');
+  var mainPhoneDiv = document.getElementById('mainPhoneDiv');
+  if (mainPhoneDiv) {
+    if(phone) {
+      mainPhoneDiv.innerHTML = phone;
+    } else {
+      mainPhoneDiv.innerHTML = "07700 900 457";
+    }
   }
-}
 </script>
 
 {% endblock %}

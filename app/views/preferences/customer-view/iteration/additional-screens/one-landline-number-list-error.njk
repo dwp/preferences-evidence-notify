@@ -6,7 +6,7 @@
 
 {% block beforeContent %}
 
-{% include "preferences/breadcrumbs/customer-view/email.html" %}
+{% include "preferences/breadcrumbs/customer-view/landline-number-singular.html" %}
 
 
 {% endblock %}
@@ -14,63 +14,61 @@
 
 {% block content %}
 
-
 <div class="govuk-width-container">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">Email addresses</h1>
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <div role="alert">
+            <h2 class="govuk-error-summary__title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#">Select yes if you need to add another landline phone number</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <h1 class="govuk-heading-l">Landline phone number</h1>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Email 1
+              Landline
             </dt>
             <dd class="govuk-summary-list__value">
-            <p class="govuk-body">sarah.lee@email.com</p>
+              <p class="govuk-body" id="mainLandlineDiv" name="mainLandlineDiv"></p>
             </dd>
             <dd class="govuk-summary-list__actions">
               <ul class="govuk-summary-list__actions-list">
                 <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> change email</span></a>
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> change landline phone number</span></a>
                 </li>
                 <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> remove email</span></a>
+                  <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> remove landline phone number</span></a>
                 </li>
               </ul>
             </dd>
           </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email 2
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p class="govuk-body">s.lee@university.ac.uk</p>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <ul class="govuk-summary-list__actions-list">
-                <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> change email</span></a>
-                </li>
-                <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> remove email</span></a>
-                </li>
-              </ul>
-            </dd>
-          </div>
-
+          
         </dl>
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="landline-phone-number-hint landline-phone-number-error">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
-                Do you need to add another email address?
+                Do you need to add another landline phone number?
               </h2>
             </legend>
             <div id="changedName-hint" class="govuk-hint">
-              You can add up to three email addresses
+              You can add up to three landline phone numbers
             </div>
+            <p id="passport-issued-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select yes if you need to add another landline phone number
+            </p>
             <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="yes">
@@ -92,26 +90,21 @@
           Continue
         </button>
 
-
       </div>
     </div>
 </div>
 
 
-</div>
-
 <script>
-  var email = sessionStorage.getItem('email');
-
-var newEmailDiv = document.getElementById('newEmailDiv');
-
-if (newEmailDiv) {
-  if(email) {
-    newEmailDiv.innerHTML = email;
-  } else {
-    newEmailDiv.innerHTML = "sarah.phillips@example.com";
+  var landline = sessionStorage.getItem('landline');
+  var mainLandlineDiv = document.getElementById('mainLandlineDiv');
+  if (mainLandlineDiv) {
+    if(landline) {
+      mainLandlineDiv.innerHTML = landline;
+    } else {
+      mainLandlineDiv.innerHTML = "01632 960 001";
+    }
   }
-}
 </script>
 
 {% endblock %}
