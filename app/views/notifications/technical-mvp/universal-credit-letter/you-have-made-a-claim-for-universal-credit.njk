@@ -1,0 +1,196 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+{{ govukHeader({
+  homepageUrl: "index",
+  serviceName: "View your letters and messages",
+  serviceUrl: "#"
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+View your letters and messages
+{% endblock %}
+
+{% block beforeContent %}
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is not a live service and is for testing only.'
+}) }}
+
+{%- from "hmrc/components/language-select/macro.njk" import hmrcLanguageSelect -%}
+
+{{
+  hmrcLanguageSelect({
+    language: 'en',
+    en: {
+      href: '?en'
+    },
+    cy: {
+      href: '?cy'
+    }
+  })
+}}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="light-grey-background">
+      <div class="govuk-!-padding-bottom-4"></div>
+
+      {# <span class="govuk-caption-m intro-box" style="color:#0b0c0c">Your letter will expire on 14 August 2031</span> #}
+      <h1 class="govuk-heading-m intro-box">Save your letter to your device</h1>
+
+    <div class="intro-box">
+
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">Download your letter (PDF, 4.2KB)</a>
+      </p>
+
+      <p id="expiry-date" class="govuk-caption-m" style="color:#0b0c0c">Your letter won't be available to be viewed online after 14 August 2031</p>
+
+      <div class="govuk-!-padding-bottom-2"></div>
+
+
+    </div>
+  </div>
+
+  <div class="govuk-!-padding-bottom-8"></div>
+
+  <img src="/public/images/dwp-logo.png" class="dwp-logo">
+
+  <div class="govuk-!-padding-bottom-6"></div>
+
+    <h2 class="govuk-heading-m">Sender Address & Contact Details</h2>
+    <p class="govuk-body"><span class="highlight-yellow">{{'{{U_DWPSN_OffAddr1}}'}}</span></p>
+    <p class="govuk-body"><span class="highlight-yellow">{{'{{U_DWPSN_OffAddr2}}'}}</span></p>
+      <p class="govuk-body"><span class="highlight-yellow">{{'{{U_DWPSN_OffPostcode}}'}}</span></p>
+    
+      <p class="govuk-body">Telephone: <span class="highlight-yellow">{{'{{U_DWPSN_OffTel}} {{U_DWPSN_OffText_html}}'}}</span></p>
+    
+      <p class="govuk-body"><a href="https://www.gov.uk/" class="govuk-link">Visit the GOV.UK website</a></p>
+
+      <p class="govuk-body">Your reference: <span class="highlight-yellow">{{'{{U_DWPSN_YourRef}}'}}</span></p>
+    
+      <p class="govuk-body">Date issued: <span class="highlight-yellow">{{'{{SYS_DateCurrent}}'}}</span></p>
+    
+      <h2 class="govuk-heading-m">We have many different ways we can communicate with you.</h2>
+    <p class="govuk-body">If you would like braille, British Sign Language, a hearing loop, translations, large print, audio or something else please tell us using the phone number at the top of this letter.</p>
+    
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    
+    <h1 class="govuk-heading-l"><span class="highlight-yellow">{{'{{OBD_letter_title}}'}}</span></h1>
+    <h2 class="govuk-heading-m"><span class="highlight-yellow">{{'{{DWPSN_letter_subhead}}'}}</span></h2>
+
+    <p class="govuk-body">Dear <span class="highlight-yellow"><span class="highlight-yellow">{{'{{claimantFname}} {{claimantSname}}'}}</span></p>
+    
+    <p class="govuk-body">Your <span class="highlight-yellow">{{'{{caseBenefitLongDesc}}'}}</span> will end on <span class="highlight-yellow">{{'{{claimEndDate}}'}}</span>.</p>
+    
+    <p class="govuk-body">We have received your Universal Credit (UC) claim and your final payment of <span class="highlight-yellow">{{'{{caseBenefitShortDesc}}'}}</span> covers the period <span class="highlight-yellow">{{'{{finalPaymentPeriodFrom}}'}}</span> to <span class="highlight-yellow">{{'{{finalPaymentPeriodTo}}'}}</span>. We will pay this money into your usual account.</p>
+    
+    <h3 class="govuk-heading-s">Housing Benefit and Council Tax</h3>
+    <p class="govuk-body">If you get Housing Benefit or Council Tax Reduction, your local authority will write to you about this.</p>
+    
+    <h3 class="govuk-heading-s">If you have a deduction from your benefit</h3>
+    <p class="govuk-body">If you have a deduction from your <span class="highlight-yellow">{{'{{aseBenefitShortDesc}}'}}</span> towards debt or ongoing payments, for example, rent arrears, utility bills or council tax, this will stop when your <span class="highlight-yellow">{{'{{caseBenefitShortDesc}}'}}</span> stops.</p>
+    
+    <p class="govuk-body">You need to contact the organisation who set up the deduction and ask them to make new arrangements with Universal Credit. It is important you do this as soon as possible.</p>
+    
+      <p class="govuk-body">For more information, click <a href="https://www.gov.uk/bills-benefits" class="govuk-link">here</a>.</p>
+    
+        <p class="govuk-body">Yours sincerely,</p>
+          <p class="govuk-body">Office manager</p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    
+          <h2 class="govuk-heading-m">General DWP Information</h2>
+          <h3 class="govuk-heading-s">How we made our decision</h3>
+          <p class="govuk-body">The decision was made solely by an automated system using the information we were provided. We can look at the decision again without using automation. You must ask us to do this within one month of receiving this letter.</p>
+    
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-m">If you disagree with a decision</h2>
+    <h3 class="govuk-heading-s">You can ask us to explain our decision</h3>
+
+    <p class="govuk-body">You, or someone who has the authority to act for you, can phone or write to us within one month of the date on this letter to ask us to explain our decision in writing.</p>
+    
+    <h3 class="govuk-heading-s">You can also ask us to reconsider a decision</h3>
+    <p class="govuk-body">Tell us if you have more information, or if you think we have overlooked something which might change the decision. Do this within one month of the date on this letter.
+    
+      <p class="govuk-body">We will look at what you tell us and send you a letter to tell you what we have decided, and why. We call this letter a Mandatory Reconsideration Notice.</p>
+    
+    <h3 class="govuk-heading-s">When you have done this you can appeal</h3>
+    <p class="govuk-body">If you disagree with the Mandatory Reconsideration Notice, you can appeal to a tribunal.</p>
+    
+    <p class="govuk-body">You must wait for the Mandatory Reconsideration Notice before you start an appeal.</p>
+    
+    <h3 class="govuk-heading-s">Treating people fairly</h3>
+    <p class="govuk-body">We are committed to the Equality Act 2010 and treating people fairly. To find out more about this law, search 'Equality Act' on GOV.UK</p>
+    
+    <h3 class="govuk-heading-s">Call charges</h3>
+    <p class="govuk-body">Calls to 0800 numbers are free from personal mobiles and landlines.</p>
+    
+    <h3 class="govuk-heading-s">Why DWP needs personal information and how we treat it</h3>
+    <p class="govuk-body">We treat personal information carefully. We may use it for any of our purposes. To learn more about information rights and how we use information, please see our DWP Personal Information Charter</p>
+
+
+<style>
+
+
+.highlight-yellow {
+  background-color: #ffdd00;
+}
+
+  <button type="submit" class="govuk-button download-pdf" data-module="govuk-button">
+      Download PDF
+    </button>
+
+.dwp-logo {max-width: 40%}
+.dwp-logo {max-height: 40%}
+.dwp-logo {max-width: 135px}
+.dwp-logo {max-height: 113.5px}
+        
+
+.intro-box {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+  .right-align {
+    float: right;
+  }
+
+  .intro-box {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+.grey-background {
+    background-color: #e5e6e7;
+  }
+
+  .light-grey-background {
+    background-color: #f3f2f1;
+    border-left: 10px solid #1d70b8;
+  }
+
+</style>
+
+
+{% endblock %}

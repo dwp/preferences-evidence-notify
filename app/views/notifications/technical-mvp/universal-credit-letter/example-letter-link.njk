@@ -1,0 +1,242 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+{{ govukHeader({
+  homepageUrl: "index",
+  serviceName: "View your letters and messages",
+  serviceUrl: "#"
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+View your letters and messages
+{% endblock %}
+
+{% block beforeContent %}
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is not a live service and is for testing only.'
+}) }}
+
+{%- from "hmrc/components/language-select/macro.njk" import hmrcLanguageSelect -%}
+
+{{
+  hmrcLanguageSelect({
+    language: 'en',
+    en: {
+      href: '?en'
+    },
+    cy: {
+      href: '?cy'
+    }
+  })
+}}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+
+    {# <div class="grey-background">
+      <div class="govuk-!-padding-bottom-4"></div>
+      <span id="expiry-date" class="govuk-caption-m intro-box" style="color:#0b0c0c">Your letter will expire on 14 August 2031</span>
+    <div class="intro-box">
+    <button type="submit" class="govuk-button intro-box" data-module="govuk-button">
+    Download as PDF (2MB)
+    </button>
+    </div>
+  </div> #}
+
+    <div class="light-grey-background">
+      <div class="govuk-!-padding-bottom-4"></div>
+
+      {# <span class="govuk-caption-m intro-box" style="color:#0b0c0c">Your letter will expire on 14 August 2031</span> #}
+      <h1 class="govuk-heading-m intro-box">Save your letter to your device</h1>
+
+    <div class="intro-box">
+
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">Download your letter (PDF, 4.2KB)</a>
+      </p>
+
+      <p id="expiry-date" class="govuk-caption-m" style="color:#0b0c0c">Your letter won't be available to be viewed online after 14 August 2031</p>
+
+      <div class="govuk-!-padding-bottom-2"></div>
+
+
+    </div>
+  </div>
+
+  </div>
+
+  
+  <div class="govuk-grid-column-two-thirds">
+
+    <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+    <div class="govuk-!-padding-bottom-6"></div>
+
+    <div class="govuk-!-padding-bottom-6"></div>
+
+
+    <div>
+
+
+
+    </div>
+
+
+      <p>
+        Sarah Philips<br>
+        72 Guild Street<br>London<br>SE23 6FH
+      </p>
+
+        <h1 class="govuk-heading-l">Your Job Seeker's Allowance payments will end</h1>
+
+        <h2 class="govuk-heading-m">You have made a claim for Universal Credit</h2>
+
+        <p class="govuk-body">Dear Sarah Philips</p>
+
+        <p class="govuk-body">Your {caseBenefitLongDesc} will end on {claimEndDate}.</p>
+        	
+        <p class="govuk-body">We have received your Universal Credit (UC) claim and your final payment of {caseBenefitShortDesc} covers the period {finalPaymentPeriodFrom} to {finalPaymentPeriodTo}. We will pay this money into your usual account.  </p>
+
+        <h2 class="govuk-heading-m">Housing Benefit and Council Tax</h2>
+
+        <p class="govuk-body">If you get Housing Benefit or Council Tax Reduction, your local   
+          authority will write to you about this.</p>
+
+        <h2 class="govuk-heading-m">If you have a deduction from your benefit</h2>
+
+        <p class="govuk-body">If you have a deduction from your {caseBenefitShortDesc} towards debt or ongoing payments, for example, rent arrears, utility bills or council tax, this will stop when your {caseBenefitShortDesc} stops.</p>
+
+        <p class="govuk-body">You need to contact the organisation who set up the deduction and ask them to make new arrangements with Universal Credit. It is important you do this as soon as possible.</p>
+
+        <p class="govuk-body">For more information, visit <a href="www.gov.uk/bills-benefits" class="govuk-link">www.gov.uk/bills-benefits</a></p>
+
+        <p class="govuk-body">Yours sincerely,</p>
+
+        <p class="govuk-body">Office manager</p>
+        
+        <h3 class="govuk-heading-s">How we made our decision</h3>
+
+        <p class="govuk-body">The decision was made by an automated system using the information we were provided. We can look at the decision again without using automation. You must ask us to do this within one month of receiving this letter.</p>
+
+        <h3 class="govuk-heading-s">If you disagree with a decision</h3>
+
+        <h3 class="govuk-heading-s">You can ask us to explain our decision</h3>
+
+        <p class="govuk-body">You, or someone who has the authority to act for you, can phone or write to us within one month of the date on this letter to ask us to explain our decision in writing.</p>
+
+        <h3 class="govuk-heading-s">You can also ask us to reconsider a decision</h3>
+        
+        <p class="govuk-body">Tell us if you have more information, or if you think we have overlooked something which might change the decision. Do this within one month of the date on this letter.</p>
+        
+        <p class="govuk-body">We will look at what you tell us and send you a letter to tell you what we have decided, and why. We call this letter a Mandatory Reconsideration Notice.</p>
+
+        <h3 class="govuk-heading-s">When you have done this you can appeal</h3>
+
+
+        <p class="govuk-body">If you disagree with the Mandatory Reconsideration Notice, you can appeal to a tribunal.</p>
+        
+        <p class="govuk-body">You must wait for the Mandatory Reconsideration Notice before you start an appeal.</p>
+        
+        <h3 class="govuk-heading-s">Treating people fairly</h3>
+
+        <p class="govuk-body">We are committed to the Equality Act 2010 and treating people fairly. To find out more about this law, search ‘Equality’ on <a href="www.gov.uk" class="govuk-link">www.gov.uk</a></p>
+        
+        <h3 class="govuk-heading-s">Call charges</h3>
+
+        <p class="govuk-body">Calls to 0800 numbers are free from personal mobiles and landlines.</p>
+
+        <h3 class="govuk-heading-s">Why DWP needs personal information and how we treat it</h3>
+
+        <p class="govuk-body">We treat personal information carefully. We may use it for any of our purposes. To learn more about information rights and how we use information, please visit our DWP Personal Information Charter at <a href="www.gov.uk/dwp/personal-information-charter" class="govuk-link">www.gov.uk/dwp/personal-information-charter</a></p>
+
+        <h3 class="govuk-heading-s"></h3>
+
+        </div>
+
+      <div class="govuk-grid-column-one-third">
+
+        <div class="govuk-!-padding-bottom-8"></div>
+
+        <img src="/public/images/dwp-logo.png" class="dwp-logo">
+
+        <div class="govuk-!-padding-bottom-8"></div>
+
+        <p class="govuk-body">Mail Handling Site A<br>
+          Wolverhampton<br>
+          WV98 2AG</p>
+
+          <p class="govuk-body">
+            <a href="#" class="https://www.gov.uk/">Visit the GOV.UK website</a> {# We will need to add accessible hidden text #}
+          </p>
+
+        <p class="govuk-body">Office Name<br>
+          Office Name<br>
+          Site Handling Site X<br>
+          Wolverhampton<br>
+          WV9X 1XX<br>
+          Overflow line 5 if needed</p>
+
+        <p class="govuk-body">Telephone: 0800 731 7898<br>
+          Textphone: 0800 731 7339</p>
+
+          <p class="govuk-body">Your reference: {claimantNino}</p>
+
+          <h3 class="govuk-heading-s">We have many different ways we can communicate with you</h3>
+
+          <p class="govuk-body">If you would like Braille, British Sign Language, a hearing loop, translations, large print, audio or something else please tell us using the phone number at the top of this letter</p>
+
+        </div>
+      </div>
+
+
+
+<style>
+
+.dwp-logo {max-width: 40%}
+.dwp-logo {max-height: 40%}
+        
+
+.intro-box {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+.grey-background {
+    background-color: #e5e6e7;
+  }
+
+  .light-grey-background {
+    background-color: #f3f2f1;
+    border-left: 10px solid #1d70b8;
+  }
+  
+
+  .right-align {
+    float: right;
+  }
+
+  <button type="submit" class="govuk-button download-pdf" data-module="govuk-button">
+      Download PDF
+    </button>
+
+</style>
+
+
+{% endblock %}
