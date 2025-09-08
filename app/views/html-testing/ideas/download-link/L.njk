@@ -1,0 +1,227 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+{{ govukHeader({
+  homepageUrl: "index",
+  serviceName: "View your letters and messages",
+  serviceUrl: "#"
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+View your letters and messages
+{% endblock %}
+
+{% block beforeContent %}
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is not a live service and is for testing only.'
+}) }}
+
+{%- from "hmrc/components/language-select/macro.njk" import hmrcLanguageSelect -%}
+
+{{
+  hmrcLanguageSelect({
+    language: 'en',
+    en: {
+      href: '?en'
+    },
+    cy: {
+      href: '?cy'
+    }
+  })
+}}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+{% block content %}
+
+
+<div class="govuk-grid-row">
+
+<div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-s"><a href="#" class="govuk-link"><b>Download your letter (PDF, 4.2KB)</b></a></h1>
+    
+    <h1 class="govuk-heading-l">Your Income-based Job Seeker's Allowance (JSA) payments will end</h1>
+    <h2 class="govuk-heading-m">You have made a claim for Universal Credit</h2>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible custom-hr">
+
+    <p class="govuk-body">Dear Sarah Philips</p>
+    
+    <p class="govuk-body">Your Income-based Job Seeker's Allowance (JSA) will end on 31 Decemeber 2025.</p>
+    
+    <p class="govuk-body">We have received your Universal Credit (UC) claim and your final payment of £4,240 covers the period 1 September 2025 to 31 December 2025. We will pay this money into your usual account.</p>
+    
+    <h3 class="govuk-heading-s">Housing Benefit and Council Tax</h3>
+    <p class="govuk-body">If you get Housing Benefit or Council Tax Reduction, your local authority will write to you about this.</p>
+    
+    <h3 class="govuk-heading-s">If you have a deduction from your benefit</h3>
+    <p class="govuk-body">If you have a deduction from your  Income-based Job Seeker's Allowance (JSA) towards debt or ongoing payments, for example, rent arrears, utility bills or council tax, this will stop when your  Income-based Job Seeker's Allowance (JSA) stops.</p>
+    
+    <p class="govuk-body">You need to contact the organisation who set up the deduction and ask them to make new arrangements with Universal Credit. It is important you do this as soon as possible.</p>
+    
+      <p class="govuk-body">For more information, click <a href="https://www.gov.uk/bills-benefits" class="govuk-link">here</a>.</p>
+    
+        <p class="govuk-body">Yours sincerely,</p>
+          <p class="govuk-body">Office manager</p>
+
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+
+    <h3 class="govuk-heading-m">General DWP Information</h3>
+
+    <p class="govuk-body">
+      <a href="https://www.gov.uk/mandatory-reconsideration" class="govuk-link" rel="noreferrer noopener" target="_blank">Challenge a benefit decision (mandatory reconsideration) (opens in new tab)</a>
+    </p>
+    <p class="govuk-body">
+      <a href="https://www.gov.uk/government/organisations/department-for-work-pensions/about/complaints-procedure" class="govuk-link" rel="noreferrer noopener" target="_blank">Complaints procedure (opens in new tab)</a>
+    </p>
+    <p class="govuk-body">
+      <a href="https://www.gov.uk/guidance/contact-the-department-for-work-and-pensions-about-its-policies" class="govuk-link" rel="noreferrer noopener" target="_blank">Contact the Department for Work and Pensions about its policies (opens in new tab)</a>
+    </p>
+    <p class="govuk-body">
+      <a href="https://www.gov.uk/guidance/equality-act-2010-guidance" class="govuk-link" rel="noreferrer noopener" target="_blank">Equality Act 2010: guidance (opens in new tab)</a>
+    </p>
+    <p class="govuk-body">
+      <a href="https://www.gov.uk/call-charges" class="govuk-link" rel="noreferrer noopener" target="_blank">Call charges and phone numbers (opens in new tab)</a>
+    </p>
+    <p class="govuk-body">
+      <a href="https://www.gov.uk/government/organisations/department-for-work-pensions/about/personal-information-charter" class="govuk-link" rel="noreferrer noopener" target="_blank">Personal information charter (opens in new tab)</a>
+    </p>
+
+  </div>
+  
+  <div class="govuk-grid-column-one-third" style="text-align: left;">
+
+    <div class="width-container govuk-!-padding-4" style="border-radius:10px; background-color:#f3f2f1">
+      <div class="govuk-!-padding-bottom-2"></div>
+  
+    <style>
+      .dwp-logo {max-width: 135px}
+      .dwp-logo {max-height: 113.5px}
+    
+      /* .dwp-logo {
+            float: right;
+        } */
+    
+      </style>
+
+    <img src="/public/images/dwp-logo.png" class="dwp-logo">
+
+    <div class="govuk-!-padding-bottom-6"></div>
+  
+    <h3 class="govuk-heading-s">Your address</h3>
+  
+      <p class="govuk-body">72 Guild Street<br>London<br>SE23 6FH</p>
+  
+      <h3 class="govuk-heading-s">Sender contact address</h3>
+  
+      <p class="govuk-body">Mail Handling Site A<br>Wolverhamption<br>WV98 2AG</p>
+      
+        <p class="govuk-body">Telephone: 020 7946 0000<br>Textphone: 01632 960000</p>
+      
+        <p class="govuk-body"><a href="https://www.gov.uk/" class="govuk-link">Visit the GOV.UK website</a></p>
+  
+        <p class="govuk-body">Your reference: ABC123456</p>
+      
+        <p class="govuk-body">Date issued: 8 September 2025</p>
+      
+        <h2 class="govuk-heading-s">We have many different ways we can communicate with you.</h2>
+      <p class="govuk-body">If you would like braille, British Sign Language, a hearing loop, translations, large print, audio or something else please tell us using the phone number at the top of this letter.</p>
+  
+    </div>
+  </div>
+
+</div>
+
+<style>
+
+
+/* Line thickness */
+.custom-hr {
+  border: none;
+  height: 6px; 
+  background-color: #19bcb9;
+}
+
+
+
+.highlight-yellow {
+  background-color: #ffdd00;
+}
+
+  <button type="submit" class="govuk-button download-pdf" data-module="govuk-button">
+      Download PDF
+    </button>
+
+.dwp-logo {max-width: 40%}
+.dwp-logo {max-height: 40%}
+.dwp-logo {max-width: 135px}
+.dwp-logo {max-height: 113.5px}
+        
+
+.intro-box {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+  .right-align {
+    float: right;
+  }
+
+  .intro-box {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+.grey-background {
+    background-color: #e5e6e7;
+  }
+
+  .light-grey-background {
+    /* background-color: #f3f2f1; */
+    border-left: 10px solid #1d70b8;
+  }
+
+  .govuk-grid-column-two-thirds,
+  .govuk-grid-column-one-third, {
+    float: left;
+    width: 66.66%;
+  }
+
+  .govuk-grid-column-one-third {
+    width: 33.33%;
+  }
+
+  @media (max-width: 768px) {
+  .govuk-grid-column-two-thirds,
+  .govuk-grid-column-one-third {
+    float: none;
+    width: 100%;
+  } 
+  }
+
+.govuk-heading-xl {
+          padding-bottom: 10px;
+        }
+
+        .highlight-yellow {
+  background-color: #ffdd00;
+}
+
+
+</style>
+
+
+{% endblock %}
