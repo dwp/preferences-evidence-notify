@@ -14,6 +14,7 @@ View your letters and messages
 
 {% block beforeContent %}
 
+
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 
 {{ govukPhaseBanner({
@@ -47,8 +48,10 @@ View your letters and messages
 
 
 <div class="govuk-grid-row">
-  
-  <div class="govuk-grid-column-two-thirds">
+
+<div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-s"><img src="/public/images/download-icon.svg" alt="Download icon" class="govuk-icon"><a href="#" class="govuk-link">Download your letter (PDF, 4.2KB)</a></h1>
     
     <h1 class="govuk-heading-l">Your Income-based Job Seeker's Allowance (JSA) payments will end</h1>
     <h2 class="govuk-heading-m">You have made a claim for Universal Credit</h2>
@@ -115,29 +118,29 @@ View your letters and messages
     
       </style>
 
-<img src="/public/images/dwp-logo.png" class="dwp-logo">
+    <img src="/public/images/dwp-logo.png" class="dwp-logo">
 
-<div class="govuk-!-padding-bottom-6"></div>
-
-<h3 class="govuk-heading-s">Your address</h3>
-
-  <p class="govuk-body">72 Guild Street<br>London<br>SE23 6FH</p>
-
-  <h3 class="govuk-heading-s">Sender contact details</h3>
-
-  <p class="govuk-body">Mail Handling Site A<br>Wolverhamption<br>WV98 2AG</p>
+    <div class="govuk-!-padding-bottom-6"></div>
   
-    <p class="govuk-body">Telephone: 020 7946 0000<br>Textphone: 01632 960000</p>
+    <h3 class="govuk-heading-s">Your address</h3>
   
-    <p class="govuk-body"><a href="https://www.gov.uk/" class="govuk-link">Visit the GOV.UK website</a></p>
-
-    <p class="govuk-body">Your reference: ABC123456</p>
+      <p class="govuk-body">72 Guild Street<br>London<br>SE23 6FH</p>
   
-    <p class="govuk-body">Date issued: 8 September 2025</p>
+      <h3 class="govuk-heading-s">Sender contact details</h3>
   
-    <h2 class="govuk-heading-s">We have many different ways we can communicate with you.</h2>
-  <p class="govuk-body">If you would like braille, British Sign Language, a hearing loop, translations, large print, audio or something else please tell us using the phone number at the top of this letter.</p>
-
+      <p class="govuk-body">Mail Handling Site A<br>Wolverhamption<br>WV98 2AG</p>
+      
+        <p class="govuk-body">Telephone: 020 7946 0000<br>Textphone: 01632 960000</p>
+      
+        <p class="govuk-body"><a href="https://www.gov.uk/" class="govuk-link">Visit the GOV.UK website</a></p>
+  
+        <p class="govuk-body">Your reference: ABC123456</p>
+      
+        <p class="govuk-body">Date issued: 8 September 2025</p>
+      
+        <h2 class="govuk-heading-s">We have many different ways we can communicate with you.</h2>
+      <p class="govuk-body">If you would like braille, British Sign Language, a hearing loop, translations, large print, audio or something else please tell us using the phone number at the top of this letter.</p>
+  
     </div>
   </div>
 
@@ -188,7 +191,7 @@ View your letters and messages
   }
 
   .light-grey-background {
-    background-color: #f3f2f1;
+    /* background-color: #f3f2f1; */
     border-left: 10px solid #1d70b8;
   }
 
@@ -213,6 +216,17 @@ View your letters and messages
 .govuk-heading-xl {
           padding-bottom: 10px;
         }
+
+        .highlight-yellow {
+  background-color: #ffdd00;
+}
+
+
+.govuk-icon {
+  color: #1d70b8;
+  vertical-align: middle;
+  margin-right: 4px;
+}
 
 </style>
 
