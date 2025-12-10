@@ -1,0 +1,132 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Get a proof of benefit letter
+{% endblock %}
+
+{% block header %}
+   
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content" style="text-align: centre;">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Discovery
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is not a service. These are example conceptual screens.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl" >
+        Get proof of your benefits and State Pension
+      </h1>
+
+      <p>Use this service to get proof of:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Attendance Allowance</li>
+        <li>Disability Living Allowance (DLA) for adults</li>
+        <li>Employment and Support Allowance (ESA) - all types</li>
+        <li>Income Support</li>
+        <li>Jobseeker’s Allowance (JSA) - all types</li>
+        <li>Pension Credit</li>
+        <li>Personal Independence Payment (PIP)</li>
+        <li>State Pension</li>
+      </ul>
+
+      <div class="govuk-inset-text">
+        This service is also available in <a class="govuk-link govuk-link--no-visited-state" href= " " (Cymraeg)>Welsh (Cymraeg)</a>.
+      </div>
+
+      <p >You can get proof of your benefits or State Pension:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>digitally – as a digital message and downloadable file</li>
+        <li>by post - this can take up to one week to arrive</li>
+      </ul>
+
+      <p>To get proof of Universal Credit, <a class="govuk-link govuk-link--no-visited-state" href=" ">sign in to your Universal Credit account</a>.</p>
+      <p>To get proof of any other benefit, contact the benefit team directly.</p>
+
+      <h2 class="govuk-heading-m">We have changed how you sign in</h2>
+
+      <p class="govuk-body">GOV.UK One Login is the new way to sign in to this service.</p>
+
+      <p class="govuk-body">You can create a GOV.UK One Login if you do not have one.</p>
+
+
+      {{ govukButton({
+        text: "Start now",
+        href: "loading-page.njk",
+        isStartButton: true
+      }) }}
+
+
+      <h2 class="govuk-heading-m">
+        Before you start
+      </h2>
+
+      <div class="govuk-inset-text">If you’ve moved address and have not told the Department for Work and Pensions (DWP), you need to <a class="govuk-link govuk-link--no-visited-state" href=" ">report it as a change of circumstances</a> before using the service.</div>
+
+      <p>You need to register for an account if you’ve not used this service before.</p>
+
+      <p>To register, you need:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>an email address</li>
+        <li>a mobile phone</li>
+        <li>your National Insurance number</li>
+      </ul>
+
+      <p>You’ll also have to prove your identity. You’ll need details of 2 types of identity documents for this, for example your:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>passport</li>
+        <li>driving licence (you cannot use a Northern Ireland driving licence)</li>
+        <li>Self Assessment, if you have one</li>
+        <li>bank accounts, loans, mortgages or credit agreements</li>
+      </ul>
+
+      <h3 class="govuk-heading-s">If you have already registered</h3>
+
+      <p>You’ll need the email address, mobile phone and password you used to register.</p>
+
+      <h2 class="govuk-heading-m">Who cannot use this service</h2>
+
+      <p>You cannot use this service if:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>you’re an appointee or manage somebody else’s benefits or State Pension</li>
+        <li>you live outside of the UK (England, Scotland, wales and Northern Ireland)</li>
+      </ul>
+
+      <p>You need to contact the benefit or State Pension team directly:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Universal Credit - contact the <a class="govuk-link govuk-link--no-visited-state" href=" ">Universal Credit helpline</a></li>
+        <li>Attendance Allowance - contact the Attendance Allowance helpline at the <a class="govuk-link govuk-link--no-visited-state" href=" ">Disability Service Centre</a></li>
+        <li>State Pension - contact the <a class="govuk-link govuk-link--no-visited-state" href=" ">Pension Service</a></li>
+        <li>Personal Independence Payment (PIP) - contact the PIP helpline at the <a class="govuk-link govuk-link--no-visited-state" href=" ">Disability Service Centre</a></li>
+        <li>all other benefits - contact <a class="govuk-link govuk-link--no-visited-state" href=" ">Jobcentre Plus</a></li>
+      </ul>
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,235 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Proof of benefit letter
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    serviceName: "View your letters and messages",
+    serviceUrl: " "
+    })}}
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content" style="text-align: centre;">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Discovery
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is not a service. These are example conceptual screens.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    
+    <div class="govuk-grid-column-two-thirds">
+      
+      <span class="govuk-caption-xl">Employment and Support Allowance (ESA)</span>
+      <h1 class="govuk-heading-xl">Your statement of entitlement</h1>
+
+      <p class="govuk-body">
+        <span id="date-today"></span>
+      </p>
+
+   
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible custom-hr" aria-hidden="true">
+    
+      <p class="govuk-body">Please find the information you requested below.</p>
+
+      <h2 class="govuk-heading-m">Your entitlement details</h2>
+
+      <p class="govuk-body">You were awarded Contributory Employment and Support Allowance.</p> 
+      <p class="govuk-body">Your partner is also included on this claim.</p> 
+      <ul class="govuk-body"> 
+          <li>Partner's name: Rick Farmer</li>
+          <li>Partner's National Insurance number: AC222222A</li>
+      </ul>
+      <p class="govuk-body">Entitlement start date: 6 October 2024</p> 
+      <p class="govuk-body">Current amount: £10.00 four weekly</p> 
+
+      <h2 class="govuk-heading-m">Reporting changes</h2>
+
+      <p class="govuk-body">You must tell us straightaway if there is a change in your
+        circumstances. If you give wrong or incomplete information, or
+        you do not report changes, you may be paid more or less money
+        than you should. You will have to pay back overpaid money
+        when told to do so. You could also be prosecuted or need to pay
+        a financial penalty. If we pay you less money than we should we
+        may pay you this money back.
+      </p>
+
+      <h2 class="govuk-heading-m">More information</h2>
+
+      <p class="govuk-body">If you need any more information, please contact us.</p> 
+      <p class="govuk-body">Please be careful who you share this letter and other personal information with.</p>
+      
+      <br>
+
+      <p class="govuk-body govuk-!-font-weight-bold">
+        <img src="/public/images/download-icon.svg" alt="Download icon" class="govuk-icon" aria-hidden="true"> <a href="#" class="govuk-link govuk-link--no-visited-state">Download your letter (PDF, 4.2KB)</a>
+      </p>
+
+      
+
+      <br>
+      <br>
+      
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      
+
+      <h2 class="govuk-heading-l">Further information</h2>
+
+
+      <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                We have many different ways we can communicate with you
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-3" class="govuk-accordion__section-content">
+            <p class="govuk-body">If you would like Braille, British Sign Language, a hearing loop, translations, large print or something else please tell us using the phone number at the top of this letter</p>
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                Equality and Diversity
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-3" class="govuk-accordion__section-content">
+            <p class="govuk-body">We treat people fairly, regardless of their disability, ethnicity, gender, sexual orientation, transgender status, marital or civil partnership status, age, religion or beliefs.</p>
+          </div>
+        </div>
+        
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Call charges
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content">
+            <p class="govuk-body">Calls to 0800 numbers are free from personal mobiles and landlines.</p>
+          </div>
+        </div>
+        
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Why DWP needs personal information and how we treat it
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content">
+            <p class="govuk-body">We treat personal information carefully. We may use it for any of our purposes. To learn more about information rights and how we use information, please visit our <a href="#" class="https://www.gov.uk/">DWP Personal Information Charter.</a></p> 
+      <p class="govuk-body">If you have included another adult's personal information in your claim you should let them know. They can find information about why and how DWP uses personal information in our <a href="#" class="https://www.gov.uk/">DWP Personal Information Charter.</a></p> 
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4" style="text-align: left;">
+
+      <div class="width-container govuk-!-padding-4" style="border-radius:10px; background-color:#f3f2f1">
+        <div class="govuk-!-padding-bottom-2"></div>
+    
+        <style>
+          .dwp-logo {max-width: 135px}
+          .dwp-logo {max-height: 113.5px}
+        </style>
+
+        <img src="/public/images/dwp-logo.png" class="dwp-logo" aria-hidden="true">
+
+        <div class="govuk-!-padding-bottom-6"></div>
+
+        <h3 class="govuk-heading-s">Contact us</h3>
+        <p class="govuk-body">Telephone: 020 7946 0000<br>Textphone: 01632 960000</p>
+      </div>
+    </div>
+
+    <div class="govuk-grid-column-one-third" style="text-align: left;">
+
+      <div class="width-container govuk-!-padding-4" style="border-radius:10px; background-color:#f3f2f1">
+        <div class="govuk-!-padding-bottom-2"></div>
+        
+        <h3 class="govuk-heading-s">Your details</h3>
+        <p class="govuk-body">Sarah Philips<br>72 Guild Street<br>London<br>SE23 6FH</p>
+
+        <h3 class="govuk-heading-s"> Your reference</h3>
+
+        <p class="govuk-body">ABC123456</p>
+
+      </div>
+    </div>
+
+  </div>
+
+  <style>
+    /* Line thickness */
+    .custom-hr {
+      border: none;
+      height: 6px; 
+      background-color: #19bcb9;
+    }
+
+    /* Icon formatting */
+    .govuk-icon {
+      color: #1d70b8;
+      vertical-align: middle;
+    }
+  </style>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (navType === 'reload') {
+      localStorage.clear();
+    }
+
+    const today = new Date ();
+    const formattedDate = today.toLocaleDateString('en-GB', {
+
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+
+    });
+
+    const dateColumns = document.querySelectorAll('.date-today');
+    dateColumns.forEach(column => {
+    column.textContent = formattedDate;
+
+    });
+
+    document.getElementById('date-today').textContent = formattedDate;
+
+    });
+  </script>
+
+{% endblock %}
+
+

@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Get a proof of benefit letter
+{% endblock %}  
+
+{% block header %}
+  {{ govukHeader({
+    serviceName: "Get proof of your benefits and State Pension",
+    serviceUrl: " "
+    })}}
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content" style="text-align: centre;">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Discovery
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is not a service. These are example conceptual screens.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+
+    <div class="hods-loading-spinner">
+      <h1 class="govuk-heading-m" style="text-align: center; margin-bottom: 30px">
+          Producing your proof of benefit letter
+        </h1>
+      <div
+        class="hods-loading-spinner__spinner"
+        aria-live="polite"
+        role="status"
+      ></div>
+      <div class="hods-loading-spinner__content" style="margin-top: 20px">
+        <p>
+          This could take up to 30 seconds.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    setTimeout(() => {
+      window.location.href="POB-completion.html"
+    }, 3000)
+  </script>
+
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Proof of benefit letter
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    serviceName: "View your letters and messages",
+    serviceUrl: " "
+    })}}
+{% endblock %}
+
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content" style="text-align: centre;">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Discovery
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is not a service. These are example conceptual screens.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <span class="govuk-caption-xl">Employment and Support Allowance (ESA)</span>
+      <h1 class="govuk-heading-xl">Information about your benefit entitlement</h1>
+
+      <p class="govuk-body govuk-!-font-weight-bold">
+        <a class="govuk-link" download="ESA_POV_Auto_tag.pdf" href="/public/files/ESA_POV_Auto_tag.pdf">
+          Download your letter (PDF, 4.2KB)
+        </a>
+      </p>
+
+      <br>
+
+      <img src="/public/images/dwp-logo.png" class="dwp-logo" aria-hidden="true">
+
+      <style>
+        .dwp-logo {max-width: 135px}
+        .dwp-logo {max-height: 113.5px}
+        .dwp-logo {padding-bottom: 20px}
+      </style>
+
+      <p class="govuk-body">Personal Independence Payment 1<br>
+        Mail Handling Site A<br>
+        Wolverhampton<br>
+        WV98 1AA<br>
+      </p>
+
+      <p class="govuk-body">
+        <a href="#" class="https://www.gov.uk/"> GOV.UK</a>
+      </p>
+
+      <p class="govuk-body">Telephone: 0800 121 4433<br>
+        Textphone: 0800 121 4493
+      </p>
+
+      <p class="govuk-body">Your reference: ABC123456</p>
+      
+
+      <p class="govuk-body">Date: <span id="date-today"></span></p>
+      
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl" aria-hidden="true">
+
+      <p class="govuk-body">Sarah Philips<br>
+        72 Guild Street<br>
+        London<br>
+        SE23 6FH<br>
+      </p>
+
+      <br>
+
+      <p class="govuk-body">Dear Sarah Philips</p>
+      
+
+      <p class="govuk-body">Please find the information you requested below.</p>
+
+      <h2 class="govuk-heading-m">Your entitlement details</h2>
+
+      <p class="govuk-body">You were awarded Contributory Employment and Support Allowance.</p> 
+      <p class="govuk-body">Your partner is also included on this claim.</p> 
+      <p class="govuk-body">Partner's name: Rick Farmer</p>
+      <p class="govuk-body">Partner's National Insurance number: AC222222A</p>
+      <p class="govuk-body">Entitlement start date: 6 October 2024</p> 
+      <p class="govuk-body">Current amount: £10.00 four weekly</p> 
+
+      <h2 class="govuk-heading-m">Reporting changes</h2>
+
+      <p class="govuk-body">You must tell us straightaway if there is a change in your
+        circumstances. If you give wrong or incomplete information, or
+        you do not report changes, you may be paid more or less money
+        than you should. You will have to pay back overpaid money
+        when told to do so. You could also be prosecuted or need to pay
+        a financial penalty. If we pay you less money than we should we
+        may pay you this money back.
+      </p>
+
+      <h2 class="govuk-heading-m">More information</h2>
+
+      <p class="govuk-body">If you need any more information, please contact us. Our number is at the top of this letter.</p> 
+      <p class="govuk-body">Please be careful who you share this letter and other personal information with.</p> 
+      <p class="govuk-body">Yours sincerely,</p> 
+      <p class="govuk-body">Office Manager</p> 
+
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl" aria-hidden="true">
+
+      <h2 class="govuk-heading-m">We have many different ways we can communicate with you</h2>
+
+      <p class="govuk-body">If you would like Braille, British Sign Language, a hearing loop, translations, large print or something else please tell us using the phone number at the top of this letter</p>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl" aria-hidden="true">
+
+      <h2 class="govuk-heading-m">Equality and Diversity</h2>
+
+      <p class="govuk-body">We treat people fairly, regardless of their disability, ethnicity, gender, sexual orientation, transgender status, marital or civil partnership status, age, religion or beliefs.</p> 
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl" aria-hidden="true">
+
+      <h2 class="govuk-heading-m">Call charges</h2>
+
+      <p class="govuk-body">Calls to 0800 numbers are free from personal mobiles and landlines.</p>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl" aria-hidden="true">
+
+      <h2 class="govuk-heading-m">Why DWP needs personal information and how we treat it</h2>
+
+      <p class="govuk-body">We treat personal information carefully. We may use it for any of our purposes. To learn more about information rights and how we use information, please visit our <a href="#" class="https://www.gov.uk/">DWP Personal Information Charter.</a></p> 
+      <p class="govuk-body">If you have included another adult's personal information in your claim you should let them know. They can find information about why and how DWP uses personal information in our <a href="#" class="https://www.gov.uk/">DWP Personal Information Charter.</a></p> 
+
+    </div>
+  </div>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (navType === 'reload') {
+      localStorage.clear();
+    }
+
+    const today = new Date ();
+    const formattedDate = today.toLocaleDateString('en-GB', {
+
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+
+    });
+
+    const dateColumns = document.querySelectorAll('.date-today');
+    dateColumns.forEach(column => {
+    column.textContent = formattedDate;
+
+    });
+
+    document.getElementById('date-today').textContent = formattedDate;
+
+    });
+  </script>
+{% endblock %}
+
+

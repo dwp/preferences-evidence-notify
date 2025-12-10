@@ -1,0 +1,199 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-m">September - November 2025</span>
+        HTML Prototypes
+      </h1>
+
+    </div>
+  </div>
+
+    <h2 class="govuk-heading-m">
+    HTML structure
+    </h2>
+
+    <div class="width-container govuk-!-padding-4" style="border-radius:10px; background-color:#f3f2f1">
+      <div class="govuk-!-padding-bottom-2"></div>
+
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header app-custom-class">Name</th>
+            <th scope="col" class="govuk-table__header app-custom-class">Description</th>
+            <th scope="col" class="govuk-table__header app-custom-class">Action</th>
+          </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">A</th>
+            <td class="govuk-table__cell">Whole letter is displayed in the first two-thirds of the screen. Contact details content at the <b>top</b> of the letter.</td>
+          <td class="govuk-table__cell"><a href="ideas/html-structure/A.html" class="govuk-link">View</a></td>
+          </tr>
+        </tbody>
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">B</th>
+            <td class="govuk-table__cell">Whole letter is displayed in the first two-thirds of the screen. Contact details content at the <b>bottom</b> of the letter.</td>
+          <td class="govuk-table__cell"><a href="ideas/html-structure/B.html" class="govuk-link">View</a></td>
+          </tr>
+        </tbody>
+
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">C</th>
+            <td class="govuk-table__cell">Whole letter is displayed across the two-thirds and one-third of the screen.</td>
+          <td class="govuk-table__cell"><a href="ideas/html-structure/C.html" class="govuk-link">View</a></td>
+          </tr>
+        </tbody>
+
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">D</th>
+            <td class="govuk-table__cell">Whole letter is displayed across the two-thirds and one-third of the screen. The one-third has a grey background (<b>f3f2f1</b>) and a thicker section break next to the H1 (<b>19bcb9</b>).</td>
+          <td class="govuk-table__cell"><a href="ideas/html-structure/D.html" class="govuk-link">View</a></td>
+          </tr>
+        </tbody>
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">E</th>
+            <td class="govuk-table__cell">Guidance content is accessed through a <a href="https://design-system.service.gov.uk/styles/links/" class="govuk-link">'Opening links in a new tab' link.</a></td>
+          <td class="govuk-table__cell"><a href="ideas/html-structure/E.html" class="govuk-link">View</a></td>
+          </tr>
+        </tbody>
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">F</th>
+            <td class="govuk-table__cell">Guidance content is displayed in an <a href="https://design-system.service.gov.uk/components/accordion/" class="govuk-link">Accordion.</a></td>
+          <td class="govuk-table__cell"><a href="ideas/html-structure/F.html" class="govuk-link">View</a></td>
+          </tr>
+        </tbody>
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">G</th>
+            <td class="govuk-table__cell">Guidance content is displayed in one row of an <a href="https://design-system.service.gov.uk/components/accordion/" class="govuk-link">Accordion.</a></td>
+          <td class="govuk-table__cell"><a href="ideas/html-structure/G.html" class="govuk-link">View</a></td>
+          </tr>
+        </tbody>
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">H</th>
+            <td class="govuk-table__cell">Guidance content is displayed in a <a href="https://design-system.service.gov.uk/components/details/" class="govuk-link">Details</a> component.</td>
+          <td class="govuk-table__cell"><a href="ideas/html-structure/H.html" class="govuk-link">View</a></td>
+          </tr>
+        </tbody>
+      </tbody>    
+    </tbody>
+  </table>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+  <h2 class="govuk-heading-m">
+  Download your letter
+  </h2>
+
+  <div class="width-container govuk-!-padding-4" style="border-radius:10px; background-color:#f3f2f1">
+    <div class="govuk-!-padding-bottom-2"></div>
+
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header app-custom-class">Name</th>
+          <th scope="col" class="govuk-table__header app-custom-class">Description</th>
+          <th scope="col" class="govuk-table__header app-custom-class">Action</th>
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">I</th>
+          <td class="govuk-table__cell">Download component at top of page.</td>
+        <td class="govuk-table__cell"><a href="ideas/download-link/I.html" class="govuk-link">View</a></td>
+        </tr>
+      </tbody>
+
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">J</th>
+          <td class="govuk-table__cell">Download link below the H2.</td>
+        <td class="govuk-table__cell"><a href="ideas/download-link/J.html" class="govuk-link">View</a></td>
+        </tr>
+      </tbody>
+
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">K</th>
+          <td class="govuk-table__cell">Download link below 'Yours sincerely'.</td>
+        <td class="govuk-table__cell"><a href="ideas/download-link/K.html" class="govuk-link">View</a></td>
+        </tr>
+      </tbody>
+
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">L</th>
+          <td class="govuk-table__cell">Download link above the H1.</td>
+        <td class="govuk-table__cell"><a href="ideas/download-link/L.html" class="govuk-link">View</a></td>
+        </tr>
+      </tbody>
+
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">M</th>
+          <td class="govuk-table__cell">Download button below the H2.</td>
+        <td class="govuk-table__cell"><a href="ideas/download-link/M.html" class="govuk-link">View</a></td>
+        </tr>
+      </tbody>
+
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">N</th>
+          <td class="govuk-table__cell">Download link has an icon next to it.</td>
+        <td class="govuk-table__cell"><a href="ideas/download-link/N.html" class="govuk-link">View</a></td>
+        </tr>
+      </tbody>
+
+
+    </tbody>
+
+    
+  </tbody>
+  
+
+
+
+
+</table>
+
+
+</div>
+
+
+
+
+{% endblock %}

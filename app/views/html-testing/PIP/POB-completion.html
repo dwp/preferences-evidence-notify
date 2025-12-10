@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Get a proof of benefit letter
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    serviceName: "Get proof of your benefits and State Pension",
+    serviceUrl: " "
+    })}}
+{% endblock %}
+
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content" style="text-align: centre;">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Discovery
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is not a service. These are example conceptual screens.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">
+          Request complete
+        </h1>
+      </div>
+
+      <p>You have requested proof of Personal Independence Payment (PIP).</p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p>You can view and download a copy from your <a href="inbox.html">letters and messages inbox</a></p>
+
+      <br>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Sign out",
+        href: " ",
+        classes: "govuk-button"
+        }) }}
+
+        {{ govukButton({
+        text: "Go back to account home",
+        href: " ",
+        classes: "govuk-button--secondary"
+        }) }}
+      </div>
+
+    </div>
+  </div>
+
+
+
+{% endblock %}
