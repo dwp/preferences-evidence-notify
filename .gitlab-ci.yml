@@ -12,7 +12,7 @@ default:
       - scheduler_failure
       - data_integrity_failure
   tags:
-    - docker
+    - dwp-aws-x86-linux-l
 
 workflow:
   auto_cancel:
