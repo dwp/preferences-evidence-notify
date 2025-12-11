@@ -12,7 +12,7 @@ default:
       - scheduler_failure
       - data_integrity_failure
   tags:
-    - dwp-aws-x86-linux-l
+    - docker
 
 workflow:
   auto_cancel:
@@ -30,6 +30,3 @@ include:
     ref: 6.0.7
     file:
       - functions/base-mr.gitlab-ci.yml
-  - project: 'dwp/engineering/pipeline-solutions/gitlab/fragments/heroku-site-publish'
-    ref: 1-0-0
-    file: 'ci-include-heroku-site-publish-base.yml'
