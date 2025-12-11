@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: prototype.interface.preferences-evidence-notifications-prototype
-  title: preferences-evidence-notifications-prototype
+  name: pen-prototype
+  title: Preferences-Evidence-Notifications-Prototype
   description: |
     TODO: add description for preferences-evidence-notifications-prototype.
 
