@@ -57,7 +57,7 @@
           {# Sender and message #}
           <td class="govuk-table__cell">
             <span class="govuk-visually-hidden">Sender</span>
-            Personal Indepedendence Payment<br>
+            Personal Independence Payment<br>
             <span class="govuk-visually-hidden">Subject</span>
             <a href="baseline-letter.html" class="gov-link" data-id="service-1">Proof of benefit letter</a>
           </td>
@@ -197,11 +197,6 @@
 
         link.addEventListener('click', function () {
           localStorage.setItem(id, 'read');
-          row.classList.remove('unread');
-          row.classList.add('read');
-              statusCell.setAttribute('data-status', 'read');
-              statusCell.innerHTML = '<strong class="govuk-tag custom-read-tag">Read</strong>';
-            
             });
           });
         });
