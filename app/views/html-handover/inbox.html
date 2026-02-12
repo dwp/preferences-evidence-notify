@@ -1,0 +1,206 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Message centre
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    serviceName: "View your letters and messages",
+    serviceUrl: " "
+    })}}
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content" style="text-align: centre;">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Discovery
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is not a service. These are example conceptual screens.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-xl">Your letters and messages</h1>
+
+  <p class="govuk-body-l">You have 5 unread messages</p>
+
+  {# Main table #}
+  <table class="govuk-table">
+
+    {# Table headers #}
+    <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" style="padding-left:10px;">Status</th>
+            <th scope="col" class="govuk-table__header">Subject</th>
+            <th scope="col" class="govuk-table__header">Date</th>
+        </tr>
+    </thead>
+
+    {# Table rows main #}
+    <tbody class="govuk-table__body" id="table-body">
+
+      {# Table row #}
+      <tr class="govuk-table__row unread"  data-id="service-1">
+        {# Read/Unread Tag #}
+        <td class="govuk-table__cell" style="padding-left:10px;" data-status="unread">
+          <strong class="govuk-tag custom-unread-tag">
+            Unread
+          </strong>
+        </td>
+
+        {# Sender and message #}
+        <td class="govuk-table__cell">
+          <a href="baseline-letter.html" class="gov-link" data-id="service-1">Proof of benefit</a>
+        </td>
+        
+
+        {# Date - Day Month Year #}
+        <span class="govuk-visually-hidden">Sent on</span>
+        <th class="govuk-table__header date-column"  id="date-column"></th>
+          
+      </tr>
+    </tbody>
+  </table>
+
+
+  <style>
+
+  /* Adjusted breakpoint */
+    @media (max-width: 960px) {
+      .sidebar {
+        width: 100%;
+        margin-top: 20px; /* Adds spacing when stacked */
+      }
+      .leftside {
+        width: 100%;
+        margin-left: 40px; /* Adds spacing when stacked */
+      }
+    }
+
+    .govuk-table__cell {
+      padding-top: 18px;
+      padding-bottom: 20px;
+    }
+
+    .govuk-table__header {
+      padding-top: 18px;
+      padding-bottom: 20px;
+    }    
+
+    .custom-unread-tag {
+      background-color: #1d70b8;
+      color: white;
+    }
+
+
+    .custom-read-tag {
+      background-color: #e5e6e7;
+      color: #282d30;
+    }
+
+    .govuk-body-message {
+      padding: 0;
+    }
+
+    .custom-padding .govuk-table__cell {
+      padding-bottom: 0px;
+    }
+
+    .p .unbold {
+      font-weight: normal !important;
+    }
+
+    .govuk-table__cell {
+      font-weight: normal !important;
+    }
+
+    .govuk-table__row.unread {
+      background-color: #f3f2f1;
+    }
+
+    .govuk-table__row.read {
+      background-color: transparent;
+    }
+
+      /* #apply-filter {
+      width: 100%;
+      display: block;
+    } */
+
+    /* .centered-link {
+      text-align: center;
+      margin-top: 20px;
+    } */
+
+    /* .date-column {
+      padding-left: 10px;
+    } */
+
+      /* .govuk-table__header {
+      font-weight: normal !important;
+    } */
+
+
+  </style>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (navType === 'reload') {
+      localStorage.clear();
+    }
+
+    const today = new Date ();
+    const formattedDate = today.toLocaleDateString('en-GB', {
+
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+
+    });
+
+    const dateColumns = document.querySelectorAll('.date-column');
+    dateColumns.forEach(column => {
+    column.textContent = formattedDate;
+
+    });
+
+    document.getElementById('date-column').textContent = formattedDate;
+
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.gov-link').forEach(function (link) {
+        const id = link.getAttribute('data-id');
+        const row = document.querySelector(`tr[data-id="${id}"]`);
+        const statusCell = row.querySelector('[data-status]');
+
+        if (localStorage.getItem(id) === 'read') {
+            row.classList.remove('unread');
+            row.classList.add('read');
+              statusCell.setAttribute('data-status', 'read');
+              statusCell.innerHTML = '<strong class="govuk-tag custom-read-tag">Read</strong>';
+            }
+
+        link.addEventListener('click', function () {
+          localStorage.setItem(id, 'read');
+            });
+          });
+        });
+  </script>
+  </body>
+{% endblock %}
