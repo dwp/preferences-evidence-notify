@@ -1,0 +1,184 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Proof of benefit letter
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    serviceName: "View your letters and messages",
+    serviceUrl: " "
+    })}}
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content" style="text-align: centre;">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Discovery
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is not a service. These are example conceptual screens.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-inset-text">
+        <h3 class="govuk-heading-s">Save this message to your device</h3>
+        <a href="#" class="govuk-link govuk-link--no-visited-state">Download your {citizenFacingDocName} (PDF, {DocSize}KB)</a>
+      </div>
+
+
+      <span class="govuk-caption-l">{messageCentreBenefit} ({Acronym of messageCentreBenefit}) </span>
+      <h1 class="govuk-heading-l">{citizenFacingDocName}</h1>
+
+      <p class="govuk-body">Message to {Customer} sent on {Date}</p>
+      
+      <p class="govuk-body">Your reference number: {Customer Reference Number}  </p>
+
+      <p class="govuk-body">{Main letter content}</p> 
+
+      <h2 class="govuk-heading-m">Report changes to your circumstances</h2>
+      <p class="govuk-body">{Report change of circumstances letter content}</p> 
+     
+      <h2 class="govuk-heading-m" id="contact-us">If you need to contact us</h2>
+      <p class="govuk-body">You can contact us by telephone on 0800 555 0001.</p> 
+
+      <br>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+      <h2 class="govuk-heading-l" id="next-steps-and-support">More information</h2>
+      <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+       
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                {Secondary content section header}
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+            <p class="govuk-body">{Section content}</p> 
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Other ways to communicate with us
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+            <p class="govuk-body">If you would like braille, British Sign Language, a hearing loop, translations, large print, audio or something else please tell us.</p>
+            <p class="govuk-body">If you use Relay UK dial 18001 followed by our telephone number.</p>       
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Treating people fairly
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+            <p class="govuk-body">We are committed to the Equality Act 2010 and treating people fairly. Find out more about the <a href="#" class="https://www.gov.uk/">Equality Act on GOV.UK</a>.</p>
+          </div>
+        </div> 
+        
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Call charges
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+            <p class="govuk-body">Calls to 0800 numbers are free from personal mobiles and landlines.</p> 
+          </div>
+        </div> 
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Why DWP needs personal information and how we treat it
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+            <p class="govuk-body">{Section content}</p> 
+          </div>
+        </div> 
+      </div>
+    </div>
+
+    <p class="govuk-body">ID: PIP.053</p> 
+  </div>
+
+
+
+
+  <style>
+    /* Line thickness */
+    .custom-hr {
+      border: none;
+      height: 6px; 
+      background-color: #19bcb9;
+    }
+
+    /* Icon formatting */
+    .govuk-icon {
+      color: #1d70b8;
+      vertical-align: middle;
+    }
+  </style>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (navType === 'reload') {
+      localStorage.clear();
+    }
+
+    const today = new Date ();
+    const formattedDate = today.toLocaleDateString('en-GB', {
+
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+
+    });
+
+    const dateColumns = document.querySelectorAll('.date-today');
+    dateColumns.forEach(column => {
+    column.textContent = formattedDate;
+
+    });
+
+    document.getElementById('date-today').textContent = formattedDate;
+
+    });
+  </script>
+
+{% endblock %}
+
+
