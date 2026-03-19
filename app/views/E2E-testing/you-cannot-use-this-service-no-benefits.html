@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+  {{ hmrcHeader({
+    serviceName: "Get proof of your benefits and State Pension",
+    serviceUrl : "/",
+    signOutHref : "signout",
+    useTudorCrown: "true"
+  }) }}
+
+{% endblock %}
+
+{% block pageTitle %}
+You cannot get a proof of benefit letter using this service
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <!-- This page is shown when a user has no benefits in their account
+       It is triggered by the list-benefits-answer route when researchSetUpBenefits
+       is either empty or undefined -->
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Contact us
+      </h1>
+
+        <p>
+          We cannot find a record of the benefits you currently get.
+        </p>
+
+        <p>
+          If you think this is wrong, contact the benefit that pays you.
+        </p>
+
+        <p>
+          Find their contact details in a letter they’ve sent to you, or in <a href="https://www.gov.uk/browse/benefits" class="govuk-link" rel="noreferrer noopener" target="_blank">guidance about the benefit on GOV.UK (opens in a new tab)</a>.
+        </p>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Sign out",
+            href: "signout"
+          }) }}
+
+          {{ govukButton({
+            text: "Go back to account home",
+            href: "account-home",
+            classes: "govuk-button--secondary"
+          }) }}
+        </div>
+
+    </div>
+  </div>
+
+{% endblock %}

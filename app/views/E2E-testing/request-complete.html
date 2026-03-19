@@ -1,0 +1,352 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{ super() }}
+
+<style>
+  .govuk-service-navigation__wrapper{
+      flex-grow: 1;
+  }
+</style>
+
+{% set navigationEnd %}
+<li class="govuk-service-navigation__item" style="margin-left: auto;">
+  <a class="govuk-service-navigation__link" href="#">Sign out</a>
+</li>
+{% endset %}
+
+{{ govukServiceNavigation({
+
+serviceName: "Get proof of your benefits and State Pension",
+
+  slots: {
+      navigationEnd: navigationEnd
+  }
+}) }}
+
+{% endblock %}
+
+{% block pageTitle %}
+Which benefits do you need proof of?
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Request complete
+      </h1>
+    </div>
+
+
+
+  
+    <!-- If user has one in scope benefits, and has chosen letter / digital or both, need to account for only one in scope benefit from initially research setup, and the second decision of which benefits need proof-->
+
+    {% if data['inScope']|length == 1 %}
+    <p>You have requested proof of {{ data['inScope'][0] }}.</p>
+
+    <!-- if the users has more than one in scope benefit but chooses to get proof of only in benefit-->
+
+    {% elif data['which-benefits-need-proof']|length == 1 %}
+    <p>You have requested proof of {{ data['which-benefits-need-proof'][0] }}.</p>
+
+    <!-- If user has two in scope benefits, and has chosen letter / digital or both -->
+
+    {% elif data['which-benefits-need-proof']|length === 2 %}
+    <p>You have requested proof of {{ data['which-benefits-need-proof'] | formatList }}.</p>
+
+
+    <!-- If user has more than two in scope benefits, and has chosen letter / digital or both -->
+    {% elif data['which-benefits-need-proof']|length > 2 %}
+
+    <p>You have requested proof of:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for benefit in data['which-benefits-need-proof'] %}
+      <li>{{ benefit }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  
+
+    <!--What happens next section-->
+
+
+    <h2 class="govuk-heading-m">
+      What happens next
+    </h2>
+
+    {% if data['inScope'].length === 1 %}
+      <p>You can view and download a copy from <a href="inbox" class="govuk-link"> your letters and messages.</a></p>
+      {% else %}
+      <p>You can view and download copies from <a href="inbox" class="govuk-link"> your letters and messages.</a></p>
+      {% endif %}
+
+
+    <!--Letter section-->
+
+    {% if (data['digitalOrLetter'] is defined and ("Letter in the post" in data['digitalOrLetter'] or "Letters in the post" in data['digitalOrLetter'])) %}
+    
+
+  <div class="govuk-body">
+    {% if data['inScope'] and data['inScope']|length == 1 %}
+    Your standard letter should arrive within 8 days.
+  </div>   
+
+  <div class="govuk-body">
+    {% elif data['which-benefits-need-proof']|length == 1 %}
+    Your standard letter should arrive within 8 days.
+  </div>
+
+  <div class="govuk-body">
+    {% elif data['which-benefits-need-proof']|length == 2 %}
+    Seperate letters should arrive within 8 days.    
+  </div>
+
+  <div class="govuk-body">
+    {% elif data['which-benefits-need-proof']|length > 2 %}
+    Seperate letters should arrive within 8 days.    
+    {% endif %}
+</div>
+</div>
+</div>
+
+{% endif %}
+
+<!--End of Letter section-->
+
+   
+
+
+
+    <!-- Alt format dynamic content -->
+
+{% if data['altFormat'] %}
+
+
+    <!-- Shows different messages based on number of benefits requested:
+           - Single benefit: Shows simple message
+           - Two benefits: Uses formatList filter to show both
+           - Three or more: Shows as bullet points -->
+
+    <!-- If user has one in scope benefits, and has chosen letter / digital or both-->
+
+    <!-- If user has one in scope benefits, and has chosen letter / digital or both, need to account for only one in scope benefit from initially research setup, and the second decision of which benefits need proof-->
+
+     {% if data['inScope'] and data['inScope']|length == 1 %}
+
+
+
+    <div class="govuk-body">
+      You will get
+      {% if data['altFormats'] in ["Braille", "Coloured paper", "Large Print", "Large print", "Word document"] %}
+      a
+      {% else %}
+      an
+      {% endif %}
+      {{data['altFormats']}}
+      version of your letter within
+
+      {% if data['altFormats'] in ["Braille", "Word document", "Coloured paper"] %}
+       1 month.
+
+      {% elif data['altFormats'] in ["Large Print"] %}
+      8 days.
+
+      {% else %}
+      1 month.
+      {% endif %}
+
+    {% if data['altFormats'] in ["Braille", "Audio recording", "British Sign Language (BSL)"] %}
+      <p>This will include a standard letter in the same envelope.</p>
+    {% endif %}
+    </div>
+
+    <!-- if the users has more than one in scope benefit but chooses to get proof of only in benefit-->
+    {% elif data['which-benefits-need-proof']|length == 1 %}
+
+
+
+    <div class="govuk-body">
+      You will get
+      {% if data['altFormats'] in ["Braille", "Coloured paper", "Large Print", "Large print", "Word document"] %}
+      a
+      {% else %}
+      an
+      {% endif %}
+      {{data['altFormats']}}
+      version of your letter within
+
+      {% if data['altFormats'] in ["Braille", "Word document", "Coloured paper"] %}
+       1 month.
+
+      {% elif data['altFormats'] in ["Large Print"] %}
+      8 days.
+
+      {% else %}
+      1 month.
+      {% endif %}
+
+    {% if data['altFormats'] in ["Braille", "Audio recording", "British Sign Language (BSL)"] %}
+      <p>This will include a standard letter in the same envelope.</p>
+      {% endif %}
+    </div>
+
+    <!-- If user has two in scope benefits, and has chosen letter / digital or both -->
+
+    {% elif data['which-benefits-need-proof']|length == 2 %}
+
+
+
+  <div class="govuk-body">
+    You will get
+    
+    {{ data['altFormats'] }} versions of your letters within
+
+    {% if data['altFormats'] in ["Braille", "Word document", "Coloured paper"] %}
+       1 month.
+
+      {% elif data['altFormats'] in ["Large Print"] %}
+      8 days.
+
+      {% else %}
+      1 month.
+      {% endif %}
+
+    {% if data['altFormat'][0] in ["Braille", "Audio recording", "British Sign Language (BSL)"] %}
+      <p>This will include standard letters in the same envelope.</p>
+    {% endif %}
+  </div>
+
+    
+
+    <!-- If user has more than two in scope benefits, and has chosen letter / digital or both -->
+    {% elif data['which-benefits-need-proof']|length > 2 %}
+
+
+
+    <div class="govuk-body">
+      
+      You will get
+      
+      {{data['altFormats']}}
+      versions of your letters within
+
+      {% if data['altFormats'] in ["Braille", "Word document", "Coloured paper", "Audio recording", "British Sign Language (BSL)", "Easy Read", "Accessible email", "Accessible PDF"] %}
+       1 month.
+
+      {% elif data['altFormats'] in ["Large Print"] %}
+      8 days.
+
+      {% else %}
+      1 month.
+      {% endif %}
+
+    {% if data['altFormats'] in ["Braille", "Audio recording", "British Sign Language (BSL)"] %}
+      <p>This will include standard letters in the same envelope.
+      </p>
+  {% endif %}
+    </div>
+   {% endif %}
+  {% endif %}
+  
+<!-- End Letters and Alt format dynamic content -->
+
+
+    <!-- Shows different messages and layouts based on number of out-of-scope benefits:
+           - Single benefit: Simple message with link
+           - Two benefits: Uses formatList filter to show both
+           - Three or more: Bullet point list -->
+    {% if data['oOScope'].length === 1 %}
+    <h2 class="govuk-heading-m">
+      How to get proof of your other benefits
+    </h2>
+
+    <p>To get proof of {{ data['oOScope'][0] }}, you need to contact them.</p>
+
+
+    <p>Find their details for in a letter they have sent to you, or in <a href="https://www.gov.uk/browse/benefits"
+        class="govuk-link" rel="noreferrer noopener" target="_blank">guidance about the benefit on GOV.UK (opens in a
+        new tab)</a>.</p>
+
+    {% elif data['oOScope'].length === 2 %}
+    <h2 class="govuk-heading-m">
+      How to get proof of your other benefits
+    </h2>
+
+
+    <p>To get proof of {{ data['oOScope'] | formatList }}, you need to contact them.</p>
+
+    <p>Find their details in letters they have sent to you, or in <a href="https://www.gov.uk/browse/benefits"
+        class="govuk-link" rel="noreferrer noopener" target="_blank">guidance about the benefit on GOV.UK (opens in a
+        new tab)</a>.</p>
+
+
+    {% elif data['oOScope'].length > 2 %}
+    <h2 class="govuk-heading-m">
+      How to get proof of your other benefits
+    </h2>
+
+    <p>You will need to contact each benefit to get proof of benefit letters for:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for benefit in data['oOScope'] %}
+      <li>{{ benefit }}</li>
+      {% else %}
+      <p>No benefit selected</p>
+      {% endfor %}
+    </ul>
+
+    <p>Find their contact details in letters they have sent to you, or in <a href="https://www.gov.uk/browse/benefits"
+        class="govuk-link" rel="noreferrer noopener" target="_blank">guidance about the benefit on GOV.UK (opens in a
+        new tab)</a>.</p>
+
+    {% endif %}
+
+    
+
+    <!-- Special handling for Universal Credit (uCBenefit flag)
+           Shows UC guidance either with or without a heading depending on
+           whether there are other out-of-scope benefits -->
+    {% if data['uCBenefit'] == true %}
+    {% if data['oOScope'].length === 0 %}
+    <h2 class="govuk-heading-m">
+      How to get proof of your other benefits
+    </h2>
+
+    <p>To get proof of Universal Credit, <a href="https://www.gov.uk/sign-in-universal-credit" class="govuk-link"
+        rel="noreferrer noopener" target="_blank"> sign in to your Universal Credit account (opens in a new tab)</a>.
+    </p>
+
+    {% else %}
+    <p>To get proof of Universal Credit, <a href="https://www.gov.uk/sign-in-universal-credit" class="govuk-link"
+        rel="noreferrer noopener" target="_blank"> sign in to your Universal Credit account (opens in a new tab)</a>.
+    </p>
+    {% endif %}
+    {% endif %}
+
+    <br>
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+      text: "Sign out",
+      classes: "govuk-button"
+      }) }}
+
+      {{ govukButton({
+      text: "Go back to account home",
+      href: "account-home",
+      classes: "govuk-button--secondary"
+      }) }}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

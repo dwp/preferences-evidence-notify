@@ -1,0 +1,271 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {{ super() }}
+
+  {% set navigationEnd %}
+    <li class="govuk-service-navigation__item" style="margin-left: auto;">
+      <a class="govuk-service-navigation__link" href="#">Sign out</a>
+    </li>
+  {% endset %}
+
+  {{ govukServiceNavigation({
+    serviceName: "Manage your benefits and State Pension",
+    slots: {
+      navigationEnd: navigationEnd
+    }
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Your letters and messages
+{% endblock %}
+
+{% block beforeContent %}
+  <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="account-home">Account home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Your letters and messages</a>
+      </li>
+    </ol>
+  </nav>
+{% endblock %}
+
+{% block content %}
+
+  {# Get selected benefits #}
+  {% set selectedBenefits = data['which-benefits-need-proof'] or data['inScope'] %}
+
+  {# Flags for each benefit #}
+  {% set hasPIP = false %}
+  {% set hasESA = false %}
+
+  {% if selectedBenefits %}
+    {% if 'Personal Independence Payment (PIP)' in selectedBenefits or 'Personal Independence Payment' in selectedBenefits or 'PIP' in selectedBenefits %}
+      {% set hasPIP = true %}
+    {% endif %}
+
+    {% if 'Employment and Support Allowance (ESA)' in selectedBenefits or 'Employment and Support Allowance' in selectedBenefits or 'ESA' in selectedBenefits %}
+      {% set hasESA = true %}
+    {% endif %}
+  {% endif %}
+
+  {# Count unread messages #}
+  {% set unreadCount = 0 %}
+  {% if hasPIP %}
+    {% set unreadCount = unreadCount + 1 %}
+  {% endif %}
+  {% if hasESA %}
+    {% set unreadCount = unreadCount + 1 %}
+  {% endif %}
+
+  <h1 class="govuk-heading-xl">Your letters and messages</h1>
+
+  <p class="govuk-body-l" id="unread-count">
+    You have {{ unreadCount }} unread {% if unreadCount == 1 %}message{% else %}messages{% endif %}
+  </p>    
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header" style="padding-left:10px;">Status</th>
+        <th scope="col" class="govuk-table__header">Message</th>
+        <th scope="col" class="govuk-table__header" style="padding-right:10px;">Date</th>
+      </tr>
+    </thead>
+
+    <tbody class="govuk-table__body" id="table-body">
+
+      {% if hasPIP %}
+        <tr class="govuk-table__row unread" data-id="pip-unread">
+          <td class="govuk-table__header" style="padding-left:10px;" data-status="unread">
+            <strong class="govuk-tag custom-unread-tag">Unread</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="message" class="govuk-link message-link" data-id="pip-unread">
+              Personal Independence Payment (PIP)<br>
+              Proof of benefit
+            </a>
+          </td>
+          <td class="govuk-table__cell date-column" style="padding-right:10px;"></td>
+        </tr>
+      {% endif %}
+
+      {% if hasESA %}
+        <tr class="govuk-table__row unread" data-id="esa-unread">
+          <td class="govuk-table__header" style="padding-left:10px;" data-status="unread">
+            <strong class="govuk-tag custom-unread-tag">Unread</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="message" class="govuk-link message-link" data-id="esa-unread">
+              Employment and Support Allowance (ESA)<br>
+              Proof of benefit
+            </a>
+          </td>
+          <td class="govuk-table__cell date-column" style="padding-right:10px;"></td>
+        </tr>
+      {% endif %}
+
+      {% if hasPIP and not hasESA %}
+        <tr class="govuk-table__row read" data-id="pip-old">
+          <td class="govuk-table__header" style="padding-left:10px;" data-status="read">
+            <strong class="govuk-tag custom-read-tag">Read</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="message" class="govuk-link message-link" data-id="pip-old">
+              Personal Independence Payment (PIP)<br>
+              Your PIP letter
+            </a>
+          </td>
+          <td class="govuk-table__cell old-date-column" style="padding-right:10px;"></td>
+        </tr>
+      {% endif %}
+
+      {% if hasESA and not hasPIP %}
+        <tr class="govuk-table__row read" data-id="esa-old">
+          <td class="govuk-table__header" style="padding-left:10px;" data-status="read">
+            <strong class="govuk-tag custom-read-tag">Read</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="message" class="govuk-link message-link" data-id="esa-old">
+              Employment and Support Allowance (ESA)<br>
+              Your ESA letter
+            </a>
+          </td>
+          <td class="govuk-table__cell old-date-column" style="padding-right:10px;"></td>
+        </tr>
+      {% endif %}
+
+    </tbody>
+  </table>
+
+  <style>
+    .govuk-service-navigation__wrapper {
+      flex-grow: 1;
+    }
+
+    @media (max-width: 960px) {
+      .sidebar {
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .leftside {
+        width: 100%;
+        margin-left: 40px;
+      }
+    }
+
+    .govuk-table__cell {
+      padding-top: 18px;
+      padding-bottom: 20px;
+      font-weight: normal !important;
+    }
+
+    .govuk-table__header {
+      padding-top: 18px;
+      padding-bottom: 20px;
+    }
+
+    .custom-unread-tag {
+      background-color: #1d70b8;
+      color: white;
+    }
+
+    .custom-read-tag {
+      background-color: #e5e6e7;
+      color: #282d30;
+    }
+
+    .govuk-table__row.unread {
+      background-color: #f3f2f1;
+    }
+
+    .govuk-table__row.read {
+      background-color: transparent;
+    }
+  </style>
+
+
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (navType === 'reload') {
+      localStorage.clear();
+    }
+
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const oldDate = new Date();
+    oldDate.setMonth(oldDate.getMonth() - 2);
+
+    const formattedOldDate = oldDate.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    document.querySelectorAll('.date-column').forEach(function (column) {
+      column.textContent = formattedDate;
+    });
+
+    document.querySelectorAll('.old-date-column').forEach(function (column) {
+      column.textContent = formattedOldDate;
+    });
+
+    function updateUnreadCountText() {
+      const unreadRows = document.querySelectorAll('tr.unread').length;
+      const unreadCountText = document.getElementById('unread-count');
+
+      if (unreadCountText) {
+        unreadCountText.textContent =
+          'You have ' +
+          unreadRows +
+          ' unread ' +
+          (unreadRows === 1 ? 'message' : 'messages');
+      }
+    }
+
+    document.querySelectorAll('.message-link').forEach(function (link) {
+      const id = link.getAttribute('data-id');
+      const row = document.querySelector(`tr[data-id="${id}"]`);
+
+      if (!row) return;
+
+      const statusCell = row.querySelector('[data-status]');
+
+      if (localStorage.getItem(id) === 'read') {
+        row.classList.remove('unread');
+        row.classList.add('read');
+        statusCell.setAttribute('data-status', 'read');
+        statusCell.innerHTML = '<strong class="govuk-tag custom-read-tag">Read</strong>';
+      }
+
+      link.addEventListener('click', function () {
+        localStorage.setItem(id, 'read');
+
+        row.classList.remove('unread');
+        row.classList.add('read');
+        statusCell.setAttribute('data-status', 'read');
+        statusCell.innerHTML = '<strong class="govuk-tag custom-read-tag">Read</strong>';
+
+        updateUnreadCountText();
+      });
+    });
+
+    updateUnreadCountText();
+  });
+</script>
+
+
+
+{% endblock %}
+

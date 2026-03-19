@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Before we start the user research scenario - benefits
+{% endblock %}
+
+{% block header %}
+  {{ super() }}
+
+  {{ govukServiceNavigation({
+    serviceName: "Get proof of your benefits and State Pension",
+    serviceUrl: " "
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="ready" method="post">
+        <span class="govuk-caption-xl">Setting up the prototype</span>
+
+        <h1 class="govuk-heading-l">The user researcher will help you for this part of the session</h1>
+
+        <div id="account-number-hint" class="govuk-hint">
+          Your answers will determine what content appears during user testing.
+        </div>
+
+
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="altFormats1" name="altFormats" type="radio" value="Audio recording">
+        <label class="govuk-label govuk-radios__label" for="altFormats1">
+          Audio recording
+        </label>
+      </div>
+
+       <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="altFormats2" name="altFormats" type="radio" value="Braille">
+        <label class="govuk-label govuk-radios__label" for="altFormats2">
+          Braille
+        </label>
+      </div>
+
+
+
+       <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="altFormats4" name="altFormats" type="radio" value="Coloured paper">
+        <label class="govuk-label govuk-radios__label" for="altFormats4">
+          Coloured paper
+        </label>
+      </div>
+
+    
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="altFormats7" name="altFormats" type="radio" value="Large Print">
+        <label class="govuk-label govuk-radios__label" for="altFormats7">
+          Large Print
+        </label>
+      </div>
+
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="altFormats9" name="altFormats" type="radio" value="Word document">
+        <label class="govuk-label govuk-radios__label" for="altFormats9">
+          None
+        </label>
+      </div>
+
+<br>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

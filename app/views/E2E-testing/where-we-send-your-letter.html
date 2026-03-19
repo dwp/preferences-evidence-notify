@@ -1,0 +1,112 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {{ super() }}
+
+  <style>
+    .govuk-service-navigation__wrapper{
+        flex-grow: 1;
+    }
+</style>
+
+{% set navigationEnd %}
+  <li class="govuk-service-navigation__item" style="margin-left: auto;">
+    <a class="govuk-service-navigation__link" href="#">Sign out</a>
+  </li>
+{% endset %}
+
+{{ govukServiceNavigation({
+  serviceName: "Get proof of your benefits and State Pension",
+    slots: {navigationEnd: navigationEnd}
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+Get proof of your benefits and State Pension
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+
+
+
+        <!-- Different text shown based on research setup address type:
+             - If researchSetUpAddress is 'home', shows "Your address is saved as:"
+             - If researchSetUpAddress is anything else, shows "The address we send your letters to is saved as:"
+             This allows us to test  different content variations during research sessions -->
+
+             <h1 class="govuk-heading-l" >Confirm your address</h1>
+
+             {% if data.researchSetUpAddress === 'home' %}
+               <p>Your address is saved as:</p>
+             {% else %}
+               <p>The address we send your letters to is saved as:</p>
+             {% endif %}
+
+        <div class="govuk-inset-text">
+          {% if data.researchSetUpAddress === 'home' %}
+            <p>72 Guild Street
+                  <br>London
+                  <br>SE23 6FH
+                </p>
+          {% else %}
+            <p>12 Gregg Lane
+                  <br>London
+                  <br>SE12 SFH
+                </p>
+          {% endif %}
+        </div>
+
+        <!-- Radio button group to confirm if address is correct
+             If user selects 'No', they will be redirected to cannot-use-service page
+             If user selects 'Yes', they will proceed to check-your-answers page -->
+             {{ govukRadios({
+              name: "confirmLetterSend",
+              fieldset: {
+                legend: {
+                  text: "Is your address correct?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  checked: true if data['confirmLetterSend']|length and data['confirmLetterSend'].includes("Yes")
+                },
+                {
+                  value: "No",
+                  text: "No",
+                  checked: true if data['confirmLetterSend']|length and data['confirmLetterSend'].includes("No")
+                }
+              ]
+            }) }}
+    
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

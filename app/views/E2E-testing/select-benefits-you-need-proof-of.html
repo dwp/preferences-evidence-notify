@@ -1,0 +1,257 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{ super() }}
+
+<style>
+  .govuk-service-navigation__wrapper{
+      flex-grow: 1;
+  }
+</style>
+
+{% set navigationEnd %}
+<li class="govuk-service-navigation__item" style="margin-left: auto;">
+  <a class="govuk-service-navigation__link" href="#">Sign out</a>
+</li>
+{% endset %}
+
+{{ govukServiceNavigation({
+
+serviceName: "Get proof of your benefits and State Pension",
+
+  slots: {
+      navigationEnd: navigationEnd
+  }
+}) }}
+
+{% endblock %}
+
+{% block pageTitle %}
+Which benefits do you need proof of?
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/E2E-testing/select-benefits-answer" method="post">
+
+        <!-- SECTION 1: Out of Scope Benefits -->
+        <!-- This section displays information about benefits that cannot be handled by this service -->
+        <!-- It shows different messages based on whether the user has Universal Credit or other out-of-scope benefits -->
+        {% if data['oOScope'].length > 0 or data['uCBenefit'] == true %}
+        {% if data['inScope'] and data['inScope'].includes('State Pension') %}
+        <h1 class="govuk-heading-l">Getting proof of your benefits and State Pension</h1>
+        
+        <p>You can get proof of some of your payments using this service, but not all of them. </p>
+        
+        <p>This is because not all of your payments are online yet.</p>
+        
+        
+        {% else %}
+
+        <h1 class="govuk-heading-l">Getting proof of your benefits</h1>
+        
+        <p>You can get proof of some of your benefits using this service, but not all of them. </p>
+        
+        <p>This is because not all of your benefits are online yet.</p>
+        {% endif %}
+
+        <!--{% if data['uCBenefit'] == false %}
+
+        <p>This is because not all of your benefits are online yet.</p>
+
+        {% endif %}-->
+
+        <h2 class="govuk-heading-m">Benefits you cannot get proof of using this service</h2>
+
+        <!-- SECTION 2: Universal Credit Special Handling -->
+        <!-- Universal Credit is handled separately with a direct link to their account -->
+        {% if data['uCBenefit'] == true %}
+        <p>To get proof of Universal Credit, <a href="https://www.gov.uk/sign-in-universal-credit" class="govuk-link" rel="noreferrer noopener" target="_blank"> sign in to your Universal Credit account (opens in a new tab)</a>.</p>
+        {% endif %}
+
+        <!-- SECTION 3: Dynamic Content for Out of Scope Benefits -->
+        <!-- This section generates different messages based on how many out-of-scope benefits the user has -->
+        <!-- It handles cases for 1, 2, or more than 2 benefits differently -->
+        {% if data['oOScope'].length === 1 %}
+          <p>To get proof of {{ data['oOScope'][0] }}, you need to contact them.</p>
+
+        {% elif data['oOScope'].length === 2 %}
+          <p>To get proof of {{ data['oOScope'] | formatList }}, you need to contact them.</p>
+
+        {% elif data['oOScope'].length > 2 %}
+          <p>You cannot use this service to get proof of:</p>
+          <ul class="govuk-list govuk-list--bullet">
+              {% for benefit in data['oOScope'] %}
+                <li>{{ benefit }}</li>
+              {% else %}
+                <p>No benefit selected</p>
+              {% endfor %}
+          </ul>
+          <p>You will need to contact them to get proof of your benefits.</p>
+        {% endif %}
+
+
+        {% if data['oOScope'].length > 0 %}
+        <p>Find their contact details in a letter they have sent to you, or in <a href="https://www.gov.uk/browse/benefits" class="govuk-link" rel="noreferrer noopener" target="_blank">guidance about the benefit on GOV.UK (opens in a new tab)</a>.
+        {% endif %}
+
+        <!-- SECTION 4: In-Scope Benefits Display -->
+        <!-- Shows the benefits that can be handled by this service -->
+        <!-- Uses different formats based on the number of benefits (1, 2, or more) -->
+
+        {% if data['inScope'] and data['inScope'].includes('State Pension') %}
+        <h2 class="govuk-heading-m">What you can get proof of using this service</h2>
+      
+        {% else %}
+
+        <h2 class="govuk-heading-m">Benefits you can get proof of using this service</h2>
+
+        {% endif %}
+
+
+        {% if data['inScope'].length === 1 %}
+          <p>If you continue, you can request proof of {{ data['inScope'][0] }}.</p>
+
+        {% elif data['inScope'].length === 2 %}
+          <p>If you continue, you can request proof of {{ data['inScope'] | formatList }}.</p>
+
+        {% elif data['inScope'].length > 2 %}
+          <p>If you continue, you can request proof of:</p>
+          <ul class="govuk-list govuk-list--bullet">
+              {% for benefit in data['inScope'] %}
+                <li>{{ benefit }}</li>
+              {% else %}
+                <p>No benefit selected</p>
+              {% endfor %}
+          </ul>
+        {% else %}
+          <p>Failed!</p>
+        {% endif %}
+
+        {% endif %}
+
+        <!-- SECTION 5: Multiple Benefits Selection -->
+        {% if data['inScope'].length > 1 %}
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="which-benefits-need-proof-hint">
+              {% if data['oOScope'].length == 0 and data['uCBenefit'] == false %}
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-fieldset__heading">
+                    What do you need proof of?
+                  </h1>
+                  {% else %}
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h2 class="govuk-fieldset__heading">
+                      What do you need proof of?
+                    </h2>
+                  {% endif %}
+                </legend>
+
+              <div id="which-benefits-need-proof-hint" class="govuk-hint"> <!--add in class= "govuk-hint "-->
+                You can select more than one.
+              </div>
+
+             <!--
+              - Loops through data['inScope'] (list of benefits user can get proof of)
+              - Creates a checkbox for each benefit
+              - Each checkbox gets unique ID using benefit name
+              - All checkboxes share same name "which-benefits-need-proof" for form submission
+              -->
+               <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                {% for benefit in data['inScope'] %}
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="which-benefits-need-proof{{benefit}}" name="which-benefits-need-proof" type="checkbox" value="{{ benefit }}">
+                    <label class="govuk-label govuk-checkboxes__label" for="which-benefits-need-proof{{benefit}}">
+                      {{ benefit }}
+                    </label>
+                </div>
+                {% endfor %}
+              </div>
+            </fieldset>
+          </div>
+
+
+
+
+        {% endif %}
+
+        <!-- SECTION 6: Single Benefit Confirmation -->
+        <!-- If user has only one eligible benefit, shows yes/no radio buttons -->
+        <!-- Special handling for State Pension with slightly different wording -->
+        {% if data['inScope'].length == 1 %}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="doYouWantLetterFor-hint">
+
+            <!-- If the user only receives in scope benefits, this makes sure the page title is the question and not the h1 above -->
+            {% if data['oOScope'].length == 0 and data['uCBenefit'] == false %}
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {% if data['inScope'] == "State Pension" %}
+                Do you need proof of {{ data['inScope'] }}?
+                {% else %}
+                Do you need proof of {{ data['inScope'] }}?
+                {% endif %}
+              </h1>
+              {% else %}
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2 class="govuk-fieldset__heading">
+                  {% if data['inScope'] == "State Pension" %}
+                  Do you need proof of {{ data['inScope'] }}?
+                  {% else %}
+                  Do you need proof of {{ data['inScope'] }}?
+                  {% endif %}
+                </h2>
+              {% endif %}
+
+            </legend>
+            <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="doYouWantLetterFor" name="doYouWantLetterFor" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="doYouWantLetterFor">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="doYouWantLetterFor-2" name="doYouWantLetterFor" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="doYouWantLetterFor-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {% endif %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+
+
+{% block pageTitle %}
+Before we start the user research scenario - intro
+{% endblock %}
+
+{% block header %}
+  {{ super() }}
+
+  {{ govukServiceNavigation({
+    serviceName: "Get proof of your benefits and State Pension",
+    serviceUrl: " "
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <!-- Form that submits to PoB-clear-data route in release-2.js -->
+      <!-- This form triggers data cleanup: resets session data and clears benefit arrays -->
+      <form class="form" action="PoB-clear-data" method="post">
+
+        <h1 class="govuk-heading-l">Select start to begin research session</h1>
+
+        <!-- When clicked, form submits to PoB-clear-data route which:
+             1. Clears all session data
+             2. Resets inScope and outOfScope benefit arrays
+             3. Resets Universal Credit flag
+             4. Redirects to the benefits selection page -->
+        {{ govukButton({
+          text: "Start",
+          isStartButton: true
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

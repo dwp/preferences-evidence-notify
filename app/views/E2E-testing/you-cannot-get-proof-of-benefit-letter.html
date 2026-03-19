@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+  {{ hmrcHeader({
+    serviceName: "Get proof of your benefits and State Pension",
+    serviceUrl : "/",
+    signOutHref : "signout",
+    useTudorCrown: "true"
+  }) }}
+
+{% endblock %}
+
+{% block pageTitle %}
+You cannot get a proof of benefit letter using this service
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        You cannot get proof of your benefits using this service
+      </h1>
+
+        <p>
+          Your benefits are not available on this service yet.
+        </p>
+
+        <h2 class="govuk-heading-m">How to get proof of your benefits</h2>
+
+        <!-- If a user gets Universal credit, we just show this line instead of it being in the dynamic list above -->
+
+        {% if data['uCBenefit'] == true %}
+        <p>To get proof of Universal Credit, <a href="https://www.gov.uk/sign-in-universal-credit" class="govuk-link" rel="noreferrer noopener" target="_blank"> sign in to your Universal Credit account (opens in a new tab)</a>.</p>
+        {% endif %}
+
+        <!-- Dynamic content section based on number of out-of-scope benefits -->
+        <!-- Case 1: Single out-of-scope benefit -->
+        {% if data['oOScope'].length === 1 %}
+          <p>To get proof of {{ data['oOScope'][0] }}, you need to contact them.</p>
+
+        <!-- Case 2: Two out-of-scope benefits -->
+        {% elif data['oOScope'].length === 2 %}
+          <p>To get proof of {{ data['oOScope'] | formatList }}, you need to contact them.</p>
+
+        <!-- Case 3: Three or more out-of-scope benefits -->
+        {% elif data['oOScope'].length > 2 %}
+          <p>You cannot use this service to get proof of:</p>
+          <!-- List all out-of-scope benefits -->
+          <ul class="govuk-list govuk-list--bullet">
+              {% for benefit in data['oOScope'] %}
+                <li>{{ benefit }}</li>
+              {% else %}
+                <p>No benefit selected</p>
+              {% endfor %}
+          </ul>
+          <p>You will need to contact them to get proof of your benefits.</p>
+        {% endif %}
+
+        <!-- Show GOV.UK guidance link if user has any out-of-scope benefits -->
+        {% if data['oOScope'].length > 0 %}
+        <p>Find their contact details in a letter they have sent to you, or in <a href="https://www.gov.uk/browse/benefits" class="govuk-link" rel="noreferrer noopener" target="_blank">guidance about the benefit on GOV.UK (opens in a new tab)</a>.
+        {% endif %}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Sign out",
+            href: "signout"
+          }) }}
+
+          {{ govukButton({
+            text: "Go back to account home",
+            href: "account-home",
+            classes: "govuk-button--secondary"
+          }) }}
+        </div>
+
+    </div>
+  </div>
+
+{% endblock %}

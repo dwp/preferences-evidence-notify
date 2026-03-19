@@ -10,6 +10,11 @@ const router = govukPrototypeKit.requests.setupRouter();
 
 // PEN routes
 
+//Message centre routes
+
+const POB = require('./routes/POB')
+router.use('/', POB)
+
 // alt-formats routes
 require("./views/alternative-formats/_routes")(router);
 

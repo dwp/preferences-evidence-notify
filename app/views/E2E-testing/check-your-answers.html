@@ -1,0 +1,177 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {{ super() }}
+
+  <style>
+    .govuk-service-navigation__wrapper{
+        flex-grow: 1;
+    }
+</style>
+
+{% set navigationEnd %}
+  <li class="govuk-service-navigation__item" style="margin-left: auto;">
+    <a class="govuk-service-navigation__link" href="#">Sign out</a>
+  </li>
+{% endset %}
+
+{{ govukServiceNavigation({
+  serviceName: "Get proof of your benefits and State Pension",
+    slots: {navigationEnd: navigationEnd}
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+Get proof of your benefits and State Pension
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Check your answers before sending your request</h1>
+
+    <form class="form" action="check-your-answers-answer" method="post" novalidate>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <!-- Benefits section - displays differently based on number of benefits selected -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                What you need proof of
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <!--
+                    This section displays the benefits the user wants proof of:
+                    - When user picks multiple benefits: Shows each benefit on a new line
+                    - When user picks one benefit: Shows just that benefit
+                    - When nothing is picked: Shows "No benefit selected"
+                -->
+                {% if data['inScope'].length > 1 %}
+                {% for benefit in data['which-benefits-need-proof'] %}
+                <p class="govuk-body">{{ benefit }}<br>
+                {% else %}
+                <!-- Show message if no benefits selected -->
+                <p>No benefit selected</p>
+                {% endfor %}
+
+                {% else %}
+                <!-- Show single benefit -->
+                <p>{{ data['inScope'] }}</p>
+
+                {% endif %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+
+                <a class="govuk-link" href=" ">Change<span class="govuk-visually-hidden">what you need proof of</span></a>
+
+
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                How you will get proof
+              </dt>
+              <dd class="govuk-summary-list__value">
+
+                {% if data['digitalOrLetter'] and 'I only want an online copy' in data['digitalOrLetter'] %}
+                  <p>Online copy only</p>
+                {% else %}
+                  {% for x in data['digitalOrLetter'] %}
+                    <p>{{ x }}</p>
+                  {% endfor %}
+
+                <p class="govuk-body">{{ data['altFormat'] }}</p>
+                {% endif %}
+
+              </dd>
+
+
+              <dd class="govuk-summary-list__actions">
+
+                <a class="govuk-link" href=" ">Change<span class="govuk-visually-hidden">how you will get proof</span></a>
+
+
+              </dd>
+            </div>
+
+
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Is your address correct?
+                <br>
+                  {% if (data['researchSetUpAddress'] === "post") %}
+                  <br>Gregg Lane
+                  <br>London
+                  <br>SE12 6FH
+                {% else %}
+                  <br>72 Guild Street
+                  <br>London
+                  <br>SE23 6FH
+                {% endif %}
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <!-- Display address based on research setup value -->
+                {% if (data['confirmLetterSend'] ==  "Download a file and get a letter in the post")%}
+                <p>Yes</p>
+                <p>No</p>
+
+                {% else %}
+                {{ data['confirmLetterSend'] }}
+
+                {% endif %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href=" ">Change<span class="govuk-visually-hidden">if your address is correct</span></a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      {% if data['digitalOrLetter'] === "Posted letter" %}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Confirm and send"
+        }) }}
+
+        {{ govukButton({
+          text: "Cancel and go to account home",
+          classes: "govuk-button--secondary"
+        }) }}
+
+      </div>
+
+      {% else %}
+
+        {{ govukButton({
+          text: "Confirm and send",
+          href: "request-complete"
+        }) }}
+
+
+
+      {% endif %}
+    </form>
+
+    </div>
+  </div>
+
+{% endblock %}
