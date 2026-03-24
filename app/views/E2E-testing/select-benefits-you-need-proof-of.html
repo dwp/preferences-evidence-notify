@@ -32,19 +32,17 @@ Which benefits do you need proof of?
 {% endblock %}
 
 {% block beforeContent %}
-
-  {{ govukPhaseBanner({
-    tag: {
-      text: "Beta"
-    },
-    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
-  }) }}
-
   {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
+      text: "Back",
+      href: "account-home"
   }) }}
-
+  
+  <ul class="dwp-language-toggle__list">
+    <li class="dwp-language-toggle__list-item" aria-current="true"> <span class="govuk-body-s"> English  </span></li>
+    <li class="dwp-language-toggle__list-item">    
+    <a href="#" hreflang="cy" lang="cy" rel="alternate" class="govuk-link--no-visited-state" aria-label="Newid yr iaith ir Gymraeg">Cymraeg</a>
+    </li>
+  </ul>
 {% endblock %}
 
 {% block content %}

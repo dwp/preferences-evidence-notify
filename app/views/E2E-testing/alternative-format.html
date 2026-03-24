@@ -25,6 +25,21 @@
 Get proof of your benefits and State Pension
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "select-benefits-you-need-proof-of"
+  }) }}
+  
+  <ul class="dwp-language-toggle__list">
+    <li class="dwp-language-toggle__list-item" aria-current="true"> <span class="govuk-body-s"> English  </span></li>
+    <li class="dwp-language-toggle__list-item">    
+    <a href="#" hreflang="cy" lang="cy" rel="alternate" class="govuk-link--no-visited-state" aria-label="Newid yr iaith ir Gymraeg">Cymraeg</a>
+    </li>
+  </ul>
+{% endblock %}
+
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -124,7 +139,6 @@ Get proof of your benefits and State Pension
                         type="radio"
                         value="No"
                         {% if data['digitalOrLetter'] == 'No' %}checked{% endif %}
-                        checked
                       >
                       <label class="govuk-label govuk-radios__label" for="digitalOrLetter-no">
                         No
@@ -175,7 +189,7 @@ Get proof of your benefits and State Pension
 
                 {% if data['altFormat'] and data['altFormat'] == data['altFormats'] %}
                   checked
-                {% endif %} checked >
+                {% endif %}>
 
                 <label class="govuk-label govuk-checkboxes__label" for="digitalOrLetter1">
                   {{data['altFormats']}}
@@ -266,7 +280,7 @@ Get proof of your benefits and State Pension
             <br>
             <br>
 
-            <a href=" " class="govuk-link govuk-link--no-visited-state">I need a different format</a>
+            <a href="alt-format-signposting" class="govuk-link govuk-link--no-visited-state">I need a different format</a>
 
             <br>
             <br>

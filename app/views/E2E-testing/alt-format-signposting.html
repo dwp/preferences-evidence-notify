@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {{ super() }}
+
+  <style>
+    .govuk-service-navigation__wrapper{
+        flex-grow: 1;
+    }
+</style>
+
+{% set navigationEnd %}
+  <li class="govuk-service-navigation__item" style="margin-left: auto;">
+    <a class="govuk-service-navigation__link" href="research-set-up/intro">Sign out</a>
+  </li>
+{% endset %}
+
+{{ govukServiceNavigation({
+  serviceName: "Get proof of your benefits and State Pension",
+    slots: {navigationEnd: navigationEnd}
+  }) }}
+
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "alternative-format"
+  }) }}
+  
+  <ul class="dwp-language-toggle__list">
+    <li class="dwp-language-toggle__list-item" aria-current="true"> <span class="govuk-body-s"> English  </span></li>
+    <li class="dwp-language-toggle__list-item">    
+    <a href="#" hreflang="cy" lang="cy" rel="alternate" class="govuk-link--no-visited-state" aria-label="Newid yr iaith ir Gymraeg">Cymraeg</a>
+    </li>
+  </ul>
+{% endblock %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{% if 'State Pension' in data['inScope'] and data['inScope']|length == 1 %}
+             <h1 class="govuk-heading-l">
+        How to get proof of your State Pension in another format
+      </h1>
+               {% endif %}
+
+               {% if 'State Pension' in data['inScope'] and data['inScope']|length > 1 %}
+                <h1 class="govuk-heading-l">
+        How to get proof of your benefits and State Pension in another format
+      </h1>
+                 {% endif %}
+
+                 {% if 'State Pension' not in data['inScope'] %}
+                  <h1 class="govuk-heading-l">
+        How to get proof of your benefits in another format
+      </h1>
+                   {% endif %}
+      
+
+      <p>
+        You need to contact the benefit team directly.
+      </p>
+
+
+
+
+{% if data['uCBenefit'] == true %}
+      <p>For Universal Credit, <a href="https://www.gov.uk/sign-in-universal-credit" class="govuk-link" rel="noreferrer noopener" target="_blank">sign in to your Universal Credit account (opens in a new tab)</a>.
+{% endif %}
+
+{% if 'State Pension' in data['inScope'] and data['inScope']|length > 1 %}
+      <p>You can also <a href="https://www.gov.uk/universal-credit/contact-universal-credit" class="govuk-link" rel="noreferrer noopener" target="_blank">contact the Universal Credit helpline (opens in a new tab)</a>.
+{% endif %}
+
+{% if 'State Pension' not in data['inScope'] %}
+      <p>For Attendance Allowance, Disability Living Allowance and Personal Independence Payment, <a href="https://www.gov.uk/disability-service-centre" class="govuk-link" rel="noreferrer noopener" target="_blank">contact the Disability Service Centre (opens in a new tab)</a>.
+{% endif %}
+
+{% if 'State Pension' not in data['inScope'] %}
+      <p>For Pension Credit and State Pension, <a href="https://www.gov.uk/contact-pension-service" class="govuk-link" rel="noreferrer noopener" target="_blank">contact the Pension Service (opens in a new tab)</a>.
+{% endif %}
+
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Sign out",
+            href: " "
+          }) }}
+
+          {{ govukButton({
+            text: "Go back to account home",
+            href: "account-home",
+            classes: "govuk-button--secondary"
+          }) }}
+        </div>
+
+    </div>
+  </div>
+
+{% endblock %}

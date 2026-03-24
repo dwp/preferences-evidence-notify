@@ -25,6 +25,16 @@
 Account home
 {% endblock %}
 
+{% block beforeContent %}
+  <ul class="dwp-language-toggle__list">
+    <li class="dwp-language-toggle__list-item" aria-current="true"> <span class="govuk-body-s"> English  </span></li>
+    <li class="dwp-language-toggle__list-item">    
+    <a href="#" hreflang="cy" lang="cy" rel="alternate" class="govuk-link--no-visited-state" aria-label="Newid yr iaith ir Gymraeg">Cymraeg</a>
+    </li>
+  </ul>
+{% endblock %}
+
+
 
 {% block content %}
 
@@ -50,9 +60,9 @@ Account home
         <h2 class="govuk-heading-m">Documents</h2>
 
 
-        <p><a type="submit" data-module="govuk-button" href="list-benefits-answer">Get proof of your benefits</a></p>
+        <p><a type="submit" data-module="govuk-button" href="list-benefits-answer" class="govuk-link--no-visited-state">Get proof of your benefits</a></p>
 
-        <p class="govuk-body"><a href="inbox-empty" class="govuk-link--no-visited-state">View your letters and messages</a></p>
+        <p class="govuk-body"><a href="{% if data.hasCompletedRequest %}inbox.html{% else %}inbox-empty.html{% endif %}" class="govuk-link--no-visited-state">View your letters and messages</a></p>
 
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 

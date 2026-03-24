@@ -31,14 +31,24 @@ serviceName: "Get proof of your benefits and State Pension",
 Which benefits do you need proof of?
 {% endblock %}
 
+{% block beforeContent %}
+  <ul class="dwp-language-toggle__list">
+    <li class="dwp-language-toggle__list-item" aria-current="true"> <span class="govuk-body-s"> English  </span></li>
+    <li class="dwp-language-toggle__list-item">    
+    <a href="#" hreflang="cy" lang="cy" rel="alternate" class="govuk-link--no-visited-state" aria-label="Newid yr iaith ir Gymraeg">Cymraeg</a>
+    </li>
+  </ul>
+{% endblock %}
+
 
 {% block content %}
 
+ 
 
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
+  
     <div class="govuk-panel govuk-panel--confirmation">
       <h1 class="govuk-panel__title">
         Request complete
@@ -60,7 +70,7 @@ Which benefits do you need proof of?
 
     <!-- If user has two in scope benefits, and has chosen letter / digital or both -->
 
-    {% elif data['which-benefits-need-proof']|length === 2 %}
+    {% elif data['which-benefits-need-proof']|length == 2 %}
     <p>You have requested proof of {{ data['which-benefits-need-proof'] | formatList }}.</p>
 
 
@@ -83,7 +93,7 @@ Which benefits do you need proof of?
       What happens next
     </h2>
 
-    {% if data['inScope'].length === 1 %}
+    {% if data['inScope'].length == 1 %}
       <p>You can view and download a copy from <a href="inbox" class="govuk-link"> your letters and messages.</a></p>
       {% else %}
       <p>You can view and download copies from <a href="inbox" class="govuk-link"> your letters and messages.</a></p>
@@ -250,7 +260,7 @@ Which benefits do you need proof of?
            - Single benefit: Simple message with link
            - Two benefits: Uses formatList filter to show both
            - Three or more: Bullet point list -->
-    {% if data['oOScope'].length === 1 %}
+    {% if data['oOScope'].length == 1 %}
     <h2 class="govuk-heading-m">
       How to get proof of your other benefits
     </h2>
@@ -262,7 +272,7 @@ Which benefits do you need proof of?
         class="govuk-link" rel="noreferrer noopener" target="_blank">guidance about the benefit on GOV.UK (opens in a
         new tab)</a>.</p>
 
-    {% elif data['oOScope'].length === 2 %}
+    {% elif data['oOScope'].length == 2 %}
     <h2 class="govuk-heading-m">
       How to get proof of your other benefits
     </h2>
@@ -301,7 +311,7 @@ Which benefits do you need proof of?
            Shows UC guidance either with or without a heading depending on
            whether there are other out-of-scope benefits -->
     {% if data['uCBenefit'] == true %}
-    {% if data['oOScope'].length === 0 %}
+    {% if data['oOScope'].length == 0 %}
     <h2 class="govuk-heading-m">
       How to get proof of your other benefits
     </h2>

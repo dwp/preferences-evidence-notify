@@ -22,17 +22,14 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="account-home">Account home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Your letters and messages</a>
-      </li>
-    </ol>
-  </nav>
+  <ul class="dwp-language-toggle__list">
+    <li class="dwp-language-toggle__list-item" aria-current="true"> <span class="govuk-body-s"> English  </span></li>
+    <li class="dwp-language-toggle__list-item">    
+    <a href="#" hreflang="cy" lang="cy" rel="alternate" class="govuk-link--no-visited-state" aria-label="Newid yr iaith ir Gymraeg">Cymraeg</a>
+    </li>
+  </ul>
 {% endblock %}
+
 
 {% block content %}
 
@@ -91,7 +88,7 @@
             <strong class="govuk-tag custom-unread-tag">Unread</strong>
           </td>
           <td class="govuk-table__cell">
-            <a href="message" class="govuk-link message-link" data-id="pip-unread">
+            <a href="message-pip" class="govuk-link message-link" data-id="pip-unread">
               Personal Independence Payment (PIP)<br>
               Proof of benefit
             </a>
@@ -106,7 +103,7 @@
             <strong class="govuk-tag custom-unread-tag">Unread</strong>
           </td>
           <td class="govuk-table__cell">
-            <a href="message" class="govuk-link message-link" data-id="esa-unread">
+            <a href="message-esa" class="govuk-link message-link" data-id="esa-unread">
               Employment and Support Allowance (ESA)<br>
               Proof of benefit
             </a>
@@ -115,64 +112,15 @@
         </tr>
       {% endif %}
 
-      {% if hasPIP and not hasESA %}
-        <tr class="govuk-table__row read" data-id="pip-old">
-          <td class="govuk-table__header" style="padding-left:10px;" data-status="read">
-            <strong class="govuk-tag custom-read-tag">Read</strong>
-          </td>
-          <td class="govuk-table__cell">
-            <a href="message" class="govuk-link message-link" data-id="pip-old">
-              Personal Independence Payment (PIP)<br>
-              Your PIP letter
-            </a>
-          </td>
-          <td class="govuk-table__cell old-date-column" style="padding-right:10px;"></td>
-        </tr>
-      {% endif %}
-
-      {% if hasESA and not hasPIP %}
-        <tr class="govuk-table__row read" data-id="esa-old">
-          <td class="govuk-table__header" style="padding-left:10px;" data-status="read">
-            <strong class="govuk-tag custom-read-tag">Read</strong>
-          </td>
-          <td class="govuk-table__cell">
-            <a href="message" class="govuk-link message-link" data-id="esa-old">
-              Employment and Support Allowance (ESA)<br>
-              Your ESA letter
-            </a>
-          </td>
-          <td class="govuk-table__cell old-date-column" style="padding-right:10px;"></td>
-        </tr>
-      {% endif %}
-
-      <tr class="govuk-table__row read" data-id="esa-old">
-          <td class="govuk-table__header" style="padding-left:10px;" data-status="read">
-            <strong class="govuk-tag custom-read-tag">Read</strong>
-          </td>
-          <td class="govuk-table__cell">
-            <a href="message-no-PDF" class="govuk-link message-link" data-id="esa-old">
-              Employment and Support Allowance (ESA)<br>
-              Your ESA letter
-            </a>
-          </td>
-          <td class="govuk-table__cell old-date-column" style="padding-right:10px;"></td>
-        </tr>
-
-        <tr class="govuk-table__row read" data-id="esa-old">
-          <td class="govuk-table__header" style="padding-left:10px;" data-status="read">
-            <strong class="govuk-tag custom-read-tag">Read</strong>
-          </td>
-          <td class="govuk-table__cell">
-            <a href="message-no-HTML" class="govuk-link message-link" data-id="esa-old">
-              Employment and Support Allowance (ESA)<br>
-              Your ESA letter
-            </a>
-          </td>
-          <td class="govuk-table__cell old-date-column" style="padding-right:10px;"></td>
-        </tr>
-
+    
     </tbody>
   </table>
+
+  {{ govukButton({
+      text: "Go back to account home",
+      href: "account-home",
+      classes: "govuk-button"
+      }) }}
 
   <style>
     .govuk-service-navigation__wrapper {

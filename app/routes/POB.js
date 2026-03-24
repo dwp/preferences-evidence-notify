@@ -77,4 +77,9 @@ router.post('/E2E-testing/select-benefits-answer', function (req, res) {
   });
 
 
+router.get('/E2E-testing/request-complete', function (req, res) {
+  req.session.data.hasCompletedRequest = true
+  res.render('E2E-testing/request-complete')
+})
+
 module.exports = router;
