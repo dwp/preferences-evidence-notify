@@ -1,0 +1,117 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {{ super() }}
+
+  {% set navigationEnd %}
+    <li class="govuk-service-navigation__item" style="margin-left: auto;">
+      <a class="govuk-service-navigation__link" href="research-set-up/intro">Sign out</a>
+    </li>
+  {% endset %}
+
+  {{ govukServiceNavigation({
+    serviceName: "Your letters and messages",
+    slots: {
+      navigationEnd: navigationEnd
+    }
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Your letters and messages
+{% endblock %}
+
+{% block beforeContent %}
+  <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="account-home">Account home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Your letters and messages</a>
+      </li>
+    </ol>
+  </nav>
+{% endblock %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-xl">Your letters and messages</h1>
+
+  {% if unreadCount > 0 %}
+    <p class="govuk-body-l" id="unread-count">
+      You have {{ unreadCount }} unread {% if unreadCount == 1 %}message{% else %}messages{% endif %}
+    </p>
+  {% else %}
+    <p class="govuk-body-l" id="unread-count">
+      You have 0 unread messages
+    </p>
+  {% endif %}
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header" style="padding-left:10px;">Status</th>
+        <th scope="col" class="govuk-table__header">Message</th>
+        <th scope="col" class="govuk-table__header" style="padding-right:10px;">Date</th>
+      </tr>
+    </thead>
+  </table>
+
+  <p>
+    You have no messages
+  </p>  
+
+
+
+  <style>
+    .govuk-service-navigation__wrapper {
+      flex-grow: 1;
+    }
+
+    @media (max-width: 960px) {
+      .sidebar {
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .leftside {
+        width: 100%;
+        margin-left: 40px;
+      }
+    }
+
+    .govuk-table__cell {
+      padding-top: 18px;
+      padding-bottom: 20px;
+      font-weight: normal !important;
+    }
+
+    .govuk-table__header {
+      padding-top: 18px;
+      padding-bottom: 20px;
+    }
+
+    .custom-unread-tag {
+      background-color: #1d70b8;
+      color: white;
+    }
+
+    .custom-read-tag {
+      background-color: #e5e6e7;
+      color: #282d30;
+    }
+
+    .govuk-table__row.unread {
+      background-color: #f3f2f1;
+    }
+
+    .govuk-table__row.read {
+      background-color: transparent;
+    }
+  </style>
+
+
+
+{% endblock %}
+

@@ -5,12 +5,12 @@
 
   {% set navigationEnd %}
     <li class="govuk-service-navigation__item" style="margin-left: auto;">
-      <a class="govuk-service-navigation__link" href="#">Sign out</a>
+      <a class="govuk-service-navigation__link" href="research-set-up/intro">Sign out</a>
     </li>
   {% endset %}
 
   {{ govukServiceNavigation({
-    serviceName: "Manage your benefits and State Pension",
+    serviceName: "Your letters and messages",
     slots: {
       navigationEnd: navigationEnd
     }
@@ -64,9 +64,15 @@
 
   <h1 class="govuk-heading-xl">Your letters and messages</h1>
 
-  <p class="govuk-body-l" id="unread-count">
-    You have {{ unreadCount }} unread {% if unreadCount == 1 %}message{% else %}messages{% endif %}
-  </p>    
+  {% if unreadCount > 0 %}
+    <p class="govuk-body-l" id="unread-count">
+      You have {{ unreadCount }} unread {% if unreadCount == 1 %}message{% else %}messages{% endif %}
+    </p>
+  {% else %}
+    <p class="govuk-body-l" id="unread-count">
+      You have 0 unread messages
+    </p>
+  {% endif %}
 
   <table class="govuk-table">
     <thead class="govuk-table__head">
@@ -138,6 +144,32 @@
           <td class="govuk-table__cell old-date-column" style="padding-right:10px;"></td>
         </tr>
       {% endif %}
+
+      <tr class="govuk-table__row read" data-id="esa-old">
+          <td class="govuk-table__header" style="padding-left:10px;" data-status="read">
+            <strong class="govuk-tag custom-read-tag">Read</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="message-no-PDF" class="govuk-link message-link" data-id="esa-old">
+              Employment and Support Allowance (ESA)<br>
+              Your ESA letter
+            </a>
+          </td>
+          <td class="govuk-table__cell old-date-column" style="padding-right:10px;"></td>
+        </tr>
+
+        <tr class="govuk-table__row read" data-id="esa-old">
+          <td class="govuk-table__header" style="padding-left:10px;" data-status="read">
+            <strong class="govuk-tag custom-read-tag">Read</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="message-no-HTML" class="govuk-link message-link" data-id="esa-old">
+              Employment and Support Allowance (ESA)<br>
+              Your ESA letter
+            </a>
+          </td>
+          <td class="govuk-table__cell old-date-column" style="padding-right:10px;"></td>
+        </tr>
 
     </tbody>
   </table>

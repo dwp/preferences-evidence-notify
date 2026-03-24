@@ -1,13 +1,12 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
+  {{ super() }}
 
-  {{ hmrcHeader({
-    serviceName: "Manage your benefits and State Pension",
-    serviceUrl : "/",
-    useTudorCrown: "true"
+  {{ govukServiceNavigation({
+    serviceName: "Get proof of your benefits and State Pension",
+    serviceUrl: " "
   }) }}
-
 {% endblock %}
 
 {% block pageTitle %}
@@ -15,13 +14,6 @@ Before we start the user research scenario - benefits
 {% endblock %}
 
 {% block beforeContent %}
-
-  {{ govukPhaseBanner({
-    tag: {
-      text: "Beta"
-    },
-    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
-  }) }}
 
   {{ govukBackLink({
     text: "Back",
@@ -36,6 +28,8 @@ Before we start the user research scenario - benefits
     <div class="govuk-grid-column-two-thirds">
 
       <form class="form" action="benefits-answer" method="post">
+
+        <span class="govuk-caption-xl">Setting up the prototype</span>
 
         <h1 class="govuk-heading-l">The researcher will help you during this part of the session</h1>
 

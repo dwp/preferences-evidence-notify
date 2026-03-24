@@ -15,13 +15,6 @@ Before we start the user research scenario - benefits
 
 {% block beforeContent %}
 
-  {{ govukPhaseBanner({
-    tag: {
-      text: "Beta"
-    },
-    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
-  }) }}
-
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -78,7 +71,7 @@ Before we start the user research scenario - benefits
 
 
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="altFormats9" name="altFormats" type="radio" value="Word document">
+        <input class="govuk-radios__input" id="altFormats9" name="altFormats" type="radio" value="None">
         <label class="govuk-label govuk-radios__label" for="altFormats9">
           None
         </label>

@@ -12,7 +12,7 @@
 
 {% set navigationEnd %}
 <li class="govuk-service-navigation__item" style="margin-left: auto;">
-  <a class="govuk-service-navigation__link" href="#">Sign out</a>
+  <a class="govuk-service-navigation__link" href="research-set-up/intro">Sign out</a>
 </li>
 {% endset %}
 
@@ -128,7 +128,7 @@ Which benefits do you need proof of?
 
     <!-- Alt format dynamic content -->
 
-{% if data['altFormat'] %}
+  {% if data['altFormats'] %}
 
 
     <!-- Shows different messages based on number of benefits requested:

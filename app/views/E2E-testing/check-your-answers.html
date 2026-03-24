@@ -11,7 +11,7 @@
 
 {% set navigationEnd %}
   <li class="govuk-service-navigation__item" style="margin-left: auto;">
-    <a class="govuk-service-navigation__link" href="#">Sign out</a>
+    <a class="govuk-service-navigation__link" href="research-set-up/intro">Sign out</a>
   </li>
 {% endset %}
 
@@ -23,17 +23,6 @@
 
 {% block pageTitle %}
 Get proof of your benefits and State Pension
-{% endblock %}
-
-{% block beforeContent %}
-
-  {{ govukPhaseBanner({
-    tag: {
-      text: "Beta"
-    },
-    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
-  }) }}
-
 {% endblock %}
 
 {% block content %}
@@ -87,19 +76,17 @@ Get proof of your benefits and State Pension
               <dt class="govuk-summary-list__key">
                 How you will get proof
               </dt>
-              <dd class="govuk-summary-list__value">
+             <dd class="govuk-summary-list__value">
 
-                {% if data['digitalOrLetter'] and 'I only want an online copy' in data['digitalOrLetter'] %}
-                  <p>Online copy only</p>
-                {% else %}
-                  {% for x in data['digitalOrLetter'] %}
-                    <p>{{ x }}</p>
-                  {% endfor %}
+              {% if data['digitalOrLetter'] == 'Yes' %}
+                <p>Standard letter</p>
+              {% elif data['digitalOrLetter'] == 'No' %}
+                <p>Online copy only</p>
+              {% else %}
+                <p>{{ data['digitalOrLetter'] }}</p>
+              {% endif %}
 
-                <p class="govuk-body">{{ data['altFormat'] }}</p>
-                {% endif %}
-
-              </dd>
+            </dd>
 
 
               <dd class="govuk-summary-list__actions">
@@ -144,31 +131,13 @@ Get proof of your benefits and State Pension
           </dl>
         </div>
       </div>
-
-      {% if data['digitalOrLetter'] === "Posted letter" %}
-
-      <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Confirm and send"
-        }) }}
-
-        {{ govukButton({
-          text: "Cancel and go to account home",
-          classes: "govuk-button--secondary"
-        }) }}
-
-      </div>
-
-      {% else %}
-
-        {{ govukButton({
-          text: "Confirm and send",
-          href: "request-complete"
-        }) }}
+    
+      {{ govukButton({
+        text: "Confirm and send",
+        href: "request-complete"
+      }) }}
 
 
-
-      {% endif %}
     </form>
 
     </div>
