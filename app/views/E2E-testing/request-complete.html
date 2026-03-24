@@ -92,33 +92,19 @@ Which benefits do you need proof of?
 
     <!--Letter section-->
 
-    {% if (data['digitalOrLetter'] is defined and ("Letter in the post" in data['digitalOrLetter'] or "Letters in the post" in data['digitalOrLetter'])) %}
-    
-
-  <div class="govuk-body">
-    {% if data['inScope'] and data['inScope']|length == 1 %}
-    Your standard letter should arrive within 8 days.
-  </div>   
-
-  <div class="govuk-body">
-    {% elif data['which-benefits-need-proof']|length == 1 %}
-    Your standard letter should arrive within 8 days.
-  </div>
-
-  <div class="govuk-body">
-    {% elif data['which-benefits-need-proof']|length == 2 %}
-    Seperate letters should arrive within 8 days.    
-  </div>
-
-  <div class="govuk-body">
-    {% elif data['which-benefits-need-proof']|length > 2 %}
-    Seperate letters should arrive within 8 days.    
-    {% endif %}
-</div>
-</div>
-</div>
-
-{% endif %}
+    {% if data['digitalOrLetter'] == 'Yes' %}
+      <div class="govuk-body">
+        {% if data['inScope'] and data['inScope']|length == 1 %}
+          Your standard letter should arrive within 8 days.
+        {% elif data['which-benefits-need-proof']|length == 1 %}
+          Your standard letter should arrive within 8 days.
+        {% elif data['which-benefits-need-proof']|length == 2 %}
+          Separate letters should arrive within 8 days.
+        {% elif data['which-benefits-need-proof']|length > 2 %}
+          Separate letters should arrive within 8 days.
+        {% endif %}
+      </div>
+    {% endif %} 
 
 <!--End of Letter section-->
 
@@ -128,7 +114,7 @@ Which benefits do you need proof of?
 
     <!-- Alt format dynamic content -->
 
-  {% if data['altFormats'] %}
+  {% if data['altFormats'] and data['altFormats'] != "None" %}
 
 
     <!-- Shows different messages based on number of benefits requested:
