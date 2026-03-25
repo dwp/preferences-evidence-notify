@@ -47,8 +47,6 @@ Get proof of your benefits and State Pension
 
       <form class="form" action="where-we-send-your-letter" method="post">
 
-      
-
         <div class="govuk-form-group">
 
           <!-- 1. User selects only SP at the start-->
@@ -57,7 +55,7 @@ Get proof of your benefits and State Pension
             <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                  Tell us how you want to get proof of your State Pension
+                  How will you get your proof of your State Pension
                 </h1>
               </legend>
 
@@ -67,7 +65,7 @@ Get proof of your benefits and State Pension
             <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                  Tell us how you want to get proof of your benefits
+                  How will you get your proof of your benefits
                 </h1>
               </legend>
 
@@ -75,7 +73,7 @@ Get proof of your benefits and State Pension
             <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-fieldset__heading">
-                Tell us how you want to get proof of your benefits
+                How will you get your proof of your benefits
               </h1>
             </legend>
 
@@ -87,7 +85,7 @@ Get proof of your benefits and State Pension
             <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                  Tell us how you want to get proof of your State Pension
+                  How will you get your proof of your State Pension
                 </h1>
               </legend>
 
@@ -97,7 +95,7 @@ Get proof of your benefits and State Pension
             <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                  Tell us how you want to get proof of your benefits and State Pension
+                  How will you get your proof of your benefits and State Pension
                 </h1>
               </legend>
 
@@ -108,25 +106,27 @@ Get proof of your benefits and State Pension
             <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                  Tell us how you want to get proof of your benefits
+                  How will you get your proof of your benefits
                 </h1>
               </legend>
             {% endif %}
 
             </fieldset>
 
-            <div class="govuk-hint">
-              You will get an online copy to view and download. This will be available immediately.<br>You can also for a copy to be sent by post. This will take longer to arrive. <br><br>
-            </div>
+            
             <!--- Radio options, if participant has not provided alt format requirement -->
 
             {% if data['altFormats'] == "None" %}
+
+            <div class="govuk-body">
+              You will get an online copy you can view or download as a letter.<br><br>You can also ask for a copy to be sent by post.<br><br>
+            </div>
 
             <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                      Do you want a copy sent in the post?
+                      Do you also want a copy sent in the post?
                   </legend>
 
                   <div class="govuk-radios" data-module="govuk-radios">
@@ -144,7 +144,7 @@ Get proof of your benefits and State Pension
                         No
                       </label>
                       <div class="govuk-hint govuk-radios__hint">
-                        Online copy available in your letters and messages immediately
+                        Online copy available in your letters and messages.
                       </div>
                     </div>
 
@@ -175,10 +175,16 @@ Get proof of your benefits and State Pension
 
           {% else %}
 
+          <div class="govuk-body">
+              You will get an online copy you can view or download as a letter.<br><br>You can also ask for a copy or alternative format to be sent by post.<br><br>
+            </div>
+
           <!--- Checkboxes, if participants has provided alt format requirements -->
 
+          {% set selectedDigitalOrLetter = data['digitalOrLetter'] or [] %}
+
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                Do you want a copy sent in the post?
+                Do you also want a copy sent in the post?
             </legend>
 
             <!--dynamic content for radio 1-->
@@ -196,7 +202,7 @@ Get proof of your benefits and State Pension
                 </label>
 
                 <div id="signIn-item-hint" class="govuk-hint govuk-checkboxes__hint">
-                  This is the format you have asked for.
+                  You have asked for this format before. 
 
                   {% if data['altFormats'] in ["Braille", "Audio recording"] %}
                   You will also get a standard letter with this.
@@ -221,12 +227,12 @@ Get proof of your benefits and State Pension
               <div class="govuk-checkboxes__item">
                 {% if data['inScope'].length === 1 %}
                   <!-- The if statement within the tag below is to make the radio button remember the choice the user has selected if they use the change link from 'check your answers' -->
-                  <input class="govuk-checkboxes__input" id="digitalOrLetter4" name="digitalOrLetter" type="checkbox" value="Letter in the post"{% if data['digitalOrLetter'] and 'Letter in the post' in data['digitalOrLetter'] %}
+                  <input class="govuk-checkboxes__input" id="digitalOrLetter4" name="digitalOrLetter" type="checkbox" value="Standard letter"{% if data['digitalOrLetter'] and 'Standard letter' in data['digitalOrLetter'] %}
                   checked
                 {% endif %}>
 
                 <label class="govuk-label govuk-checkboxes__label" for="digitalOrLetter4">
-                  {% if data['altFormats'] in ["Audio recording", "Braille", "Coloured paper", "Large Print"] %}
+                  {% if data['altFormats'] in ["Audio recording", "Braille", "Coloured paper", "Large print"] %}
                     Standard letter
                     {% else %}
                     Letter
@@ -235,12 +241,12 @@ Get proof of your benefits and State Pension
 
                 {% else %}
                   <!-- The if statement within the tag below is to make the radio button remember the choice the user has selected if they use the change link from 'check your answers' -->
-                  <input class="govuk-checkboxes__input" id="digitalOrLetter5" name="digitalOrLetter" type="checkbox" value="Letters in the post"{% if data['digitalOrLetter'] and 'Letters in the post' in data['digitalOrLetter'] %}
+                  <input class="govuk-checkboxes__input" id="digitalOrLetter5" name="digitalOrLetter" type="checkbox" value="Standard letter"{% if data['digitalOrLetter'] and 'Standard letter' in data['digitalOrLetter'] %}
                   checked
                 {% endif %}>
 
                 <label class="govuk-label govuk-checkboxes__label" for="digitalOrLetter5">
-                  {% if data['altFormats'] in ["Audio recording", "Braille", "Coloured paper", "Large Print"] %}
+                  {% if data['altFormats'] in ["Audio recording", "Braille", "Coloured paper", "Large print"] %}
                   Standard letters
                   {% else %}
                   Letters
@@ -264,12 +270,12 @@ Get proof of your benefits and State Pension
               <br>
 
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="digitalOrLetter6" name="digitalOrLetter" type="checkbox" value="Online copy only" data-behaviour="exclusive">
+                <input class="govuk-checkboxes__input" id="digitalOrLetter6" name="digitalOrLetter" type="checkbox" value=" " data-behaviour="exclusive">
                 <label class="govuk-label govuk-checkboxes__label" for="digitalOrLetter6">
                   No, I only want an online copy
                 </label>
                 <div class="govuk-hint govuk-radios__hint">
-                  Available in your letters and messages immediately.
+                  Available in your letters and messages.
                 </div>
               </div>
 

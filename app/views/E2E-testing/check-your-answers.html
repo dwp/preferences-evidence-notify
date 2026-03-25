@@ -39,8 +39,8 @@ Get proof of your benefits and State Pension
   </ul>
 {% endblock %}
 
-{% block content %}
 
+{% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -90,24 +90,24 @@ Get proof of your benefits and State Pension
               <dt class="govuk-summary-list__key">
                 How you will get proof
               </dt>
-             <dd class="govuk-summary-list__value">
+              <dd class="govuk-summary-list__value">
 
-              {% if data['digitalOrLetter'] == 'Yes' %}
-                <p>Standard letter</p>
-              {% elif data['digitalOrLetter'] == 'No' %}
-                <p>Online copy only</p>
-              {% else %}
-                <p>{{ data['digitalOrLetter'] }}</p>
-              {% endif %}
+                <p>Online copy</p>
 
-            </dd>
+                {% if data['digitalOrLetter'] == 'Yes' %}
+                  <p>Standard letter</p>
 
+                {% elif data['digitalOrLetter'] %}
+                  {% for item in data['digitalOrLetter'] %}
+                    <p>{{ item }}</p>
+                  {% endfor %}
+
+                {% endif %}
+
+              </dd>
 
               <dd class="govuk-summary-list__actions">
-
                 <a class="govuk-link" href=" ">Change<span class="govuk-visually-hidden">how you will get proof</span></a>
-
-
               </dd>
             </div>
 

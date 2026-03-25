@@ -77,6 +77,26 @@ router.post('/E2E-testing/select-benefits-answer', function (req, res) {
   });
 
 
+  // Resaves the alternative format answer for CYA
+  router.post('/E2E-testing/where-we-send-your-letter', function (req, res) {
+  let digitalOrLetter = req.body.digitalOrLetter
+
+  if (!digitalOrLetter) {
+    return res.redirect('/E2E-testing/check-your-answers')
+  }
+
+  if (!Array.isArray(digitalOrLetter)) {
+    digitalOrLetter = [digitalOrLetter]
+  }
+
+  digitalOrLetter = digitalOrLetter.filter(item => item && item !== '_unchecked')
+
+  req.session.data.digitalOrLetter = digitalOrLetter
+
+  res.redirect('/E2E-testing/where-we-send-your-letter')
+})
+
+
 router.get('/E2E-testing/request-complete', function (req, res) {
   req.session.data.hasCompletedRequest = true
   res.render('E2E-testing/request-complete')

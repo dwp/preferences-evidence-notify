@@ -102,19 +102,23 @@ Which benefits do you need proof of?
 
     <!--Letter section-->
 
-    {% if data['digitalOrLetter'] == 'Yes' %}
-      <div class="govuk-body">
-        {% if data['inScope'] and data['inScope']|length == 1 %}
-          Your standard letter should arrive within 8 days.
-        {% elif data['which-benefits-need-proof']|length == 1 %}
-          Your standard letter should arrive within 8 days.
-        {% elif data['which-benefits-need-proof']|length == 2 %}
-          Separate letters should arrive within 8 days.
-        {% elif data['which-benefits-need-proof']|length > 2 %}
-          Separate letters should arrive within 8 days.
-        {% endif %}
-      </div>
-    {% endif %} 
+  {% if data['digitalOrLetter'] == 'Yes'
+    or data['digitalOrLetter'] == 'Standard letter'
+    or data['digitalOrLetter'] == 'Standard letters'
+    or (data['digitalOrLetter'] and 'Standard letter' in data['digitalOrLetter'])
+    or (data['digitalOrLetter'] and 'Standard letters' in data['digitalOrLetter']) %}
+    <div class="govuk-body">
+      {% if data['inScope'] and data['inScope']|length == 1 %}
+        <p>Your standard letter should arrive within 8 days.</p>
+      {% elif data['which-benefits-need-proof']|length == 1 %}
+        <p>Your standard letter should arrive within 8 days.</p>
+      {% elif data['which-benefits-need-proof']|length == 2 %}
+        <p>You standard letters should arrive within 8 days.</p>
+      {% elif data['which-benefits-need-proof']|length > 2 %}
+        <p>Your standard letters should arrive within 8 days.</p>
+      {% endif %}
+    </div>
+  {% endif %}
 
 <!--End of Letter section-->
 
