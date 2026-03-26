@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {{ super() }}
+
+  {% set navigationEnd %}
+    <li class="govuk-service-navigation__item" style="margin-left: auto;">
+      <a class="govuk-service-navigation__link" href=" ">Sign out</a>
+    </li>
+  {% endset %}
+  
+{% endblock %}
+
+{% block pageTitle %}
+  View your letters and messages
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-m">March 2026</span>
+        User testing
+      </h1>
+      
+
+        <div class="width-container govuk-!-padding-4" style="border-radius:10px; background-color:#f3f2f1">
+          <div class="govuk-!-padding-bottom-2"></div>
+          
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header app-custom-class">Scenario</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Link</th>
+              </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">E2E testing</th>
+                <td class="govuk-table__cell"><a href="research-set-up/intro" class="govuk-link">View scenario</a></td>
+              </tr>
+            </tbody>
+
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">No PDF error scenario</th>
+                <td class="govuk-table__cell"><a href="message-no-pdf" class="govuk-link">View scenario</a></td>
+              </tr>
+            </tbody>
+
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">No html error scenario</th>
+                <td class="govuk-table__cell"><a href="message-no-html" class="govuk-link">View scenario</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+
+<style>
+  .half-width{ width:50% }
+</style>
+
+{% endblock %}
