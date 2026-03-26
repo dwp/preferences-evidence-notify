@@ -59,7 +59,7 @@
     {% set unreadCount = unreadCount + 1 %}
   {% endif %}
 
-  <h1 class="govuk-heading-xl">Your letters and messages</h1>
+  <h1 class="govuk-heading-xl">View your letters and messages</h1>
 
   {% if unreadCount > 0 %}
     <p class="govuk-body-l" id="unread-count">
@@ -228,21 +228,10 @@
         statusCell.setAttribute('data-status', 'read');
         statusCell.innerHTML = '<strong class="govuk-tag custom-read-tag">Read</strong>';
       }
-
-      link.addEventListener('click', function () {
-        localStorage.setItem(id, 'read');
-
-        row.classList.remove('unread');
-        row.classList.add('read');
-        statusCell.setAttribute('data-status', 'read');
-        statusCell.innerHTML = '<strong class="govuk-tag custom-read-tag">Read</strong>';
+      });
 
         updateUnreadCountText();
       });
-    });
-
-    updateUnreadCountText();
-  });
 </script>
 
 

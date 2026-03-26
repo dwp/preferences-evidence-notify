@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Accessibility user testing December 2025
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content" style="text-align: centre;">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Discovery
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is not a service. These are example conceptual screens.
+      </span>
+    </p>
+  </div>
+
+  {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-m">January 2026</span>
+        Accessibility user testing
+      </h1>
+      
+
+        <div class="width-container govuk-!-padding-4" style="border-radius:10px; background-color:#f3f2f1">
+          <div class="govuk-!-padding-bottom-2"></div>
+          
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header app-custom-class">Benefit line</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Scenario</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Baseline letter</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Refined letter</th>
+              </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">PIP</th>
+                <td class="govuk-table__cell"><a href="PIP/POB-start.html" class="govuk-link">View scenario</a></td>
+                <td class="govuk-table__cell"><a href="PIP/baseline-letter.html" class="govuk-link">View baseline letter</a></td>
+                <td class="govuk-table__cell"><a href="PIP/refined-letter.html" class="govuk-link">View refined letter</a></td>
+              </tr>
+            </tbody>
+
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">ESA</th>
+                <td class="govuk-table__cell"><a href="ESA/POB-start.html" class="govuk-link">View scenario</a></td>
+                <td class="govuk-table__cell"><a href="ESA/baseline-letter.html" class="govuk-link">View baseline letter</a></td>
+                <td class="govuk-table__cell"><a href="ESA/refined-letter.html" class="govuk-link">View refined letter</a></td>
+                <td class="govuk-table__cell"><a href=" " class="govuk-link"> </a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+
+<style>
+  .half-width{ width:50% }
+</style>
+
+{% endblock %}

@@ -39,7 +39,6 @@ Get proof of your benefits and State Pension
   </ul>
 {% endblock %}
 
-
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -187,13 +186,13 @@ Get proof of your benefits and State Pension
                 Do you also want a copy sent in the post?
             </legend>
 
-            <!--dynamic content for radio 1-->
+            <!--dynamic content for checkbox 1-->
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
                 
                 <input class="govuk-checkboxes__input" id="digitalOrLetter1" name="digitalOrLetter" type="checkbox" value="{{data['altFormats']}}" 
 
-                {% if data['altFormat'] and data['altFormat'] == data['altFormats'] %}
+                {% if data['digitalOrLetter'] and data['altFormats'] in data['digitalOrLetter'] %}
                   checked
                 {% endif %}>
 
@@ -223,7 +222,7 @@ Get proof of your benefits and State Pension
               </div>
 
 
-              <!--dynamic content for radio 2 -->
+              <!--dynamic content for checkbox 2 -->
               <div class="govuk-checkboxes__item">
                 {% if data['inScope'].length === 1 %}
                   <!-- The if statement within the tag below is to make the radio button remember the choice the user has selected if they use the change link from 'check your answers' -->
@@ -270,7 +269,17 @@ Get proof of your benefits and State Pension
               <br>
 
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="digitalOrLetter6" name="digitalOrLetter" type="checkbox" value=" " data-behaviour="exclusive">
+                <input
+                  class="govuk-checkboxes__input"
+                  id="digitalOrLetter6"
+                  name="digitalOrLetter"
+                  type="checkbox"
+                  value="Online copy only"
+                  data-behaviour="exclusive"
+                  {% if selectedDigitalOrLetter and 'Online copy only' in selectedDigitalOrLetter %}
+                    checked
+                  {% endif %}
+                >
                 <label class="govuk-label govuk-checkboxes__label" for="digitalOrLetter6">
                   No, I only want an online copy
                 </label>

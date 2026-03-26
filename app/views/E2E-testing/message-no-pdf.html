@@ -282,6 +282,11 @@ Your statement of entitlement
 
   <script>
 
+    document.addEventListener('DOMContentLoaded', function () {
+      localStorage.setItem('pip-unread', 'read');
+    });
+
+
     document.addEventListener('DOMContentLoaded', (event) => {
 
     const navType = performance.getEntriesByType('navigation')[0]?.type;

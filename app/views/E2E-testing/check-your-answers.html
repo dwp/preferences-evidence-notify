@@ -97,7 +97,9 @@ Get proof of your benefits and State Pension
                 {% if data['digitalOrLetter'] == 'Yes' %}
                   <p>Standard letter</p>
 
-                {% elif data['digitalOrLetter'] %}
+                {% elif data['digitalOrLetter'] == 'No' %}
+
+                {% else %}
                   {% for item in data['digitalOrLetter'] %}
                     <p>{{ item }}</p>
                   {% endfor %}
