@@ -11,7 +11,7 @@
 
 {% set navigationEnd %}
   <li class="govuk-service-navigation__item" style="margin-left: auto;">
-    <a class="govuk-service-navigation__link" href="research-set-up/intro">Sign out</a>
+    <a class="govuk-service-navigation__link" href="menu">Sign out</a>
   </li>
 {% endset %}
 
@@ -47,7 +47,7 @@ Get proof of your benefits and State Pension
 
     <h1 class="govuk-heading-l">Check your answers before sending your request</h1>
 
-    <form class="form" action="check-your-answers-answer" method="post" novalidate>
+    <form class="form" action="request-complete" method="post" novalidate>
 
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__content">
@@ -99,6 +99,8 @@ Get proof of your benefits and State Pension
 
                 {% elif data['digitalOrLetter'] == 'No' %}
 
+                {% elif data['digitalOrLetter'] == 'Online copy only' %}
+
                 {% else %}
                   {% for item in data['digitalOrLetter'] %}
                     <p>{{ item }}</p>
@@ -149,12 +151,25 @@ Get proof of your benefits and State Pension
       </div>
     
       {{ govukButton({
-        text: "Confirm and send",
-        href: "request-complete"
+        text: "Confirm and send"
       }) }}
 
 
     </form>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+
+        if (!form) return;
+
+        form.addEventListener('submit', function () {
+          // Clear message read state
+          localStorage.removeItem('pip-unread');
+          localStorage.removeItem('esa-unread');
+        });
+      });
+    </script>
 
     </div>
   </div>

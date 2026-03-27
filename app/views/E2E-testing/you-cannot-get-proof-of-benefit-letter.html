@@ -11,7 +11,7 @@
 
 {% set navigationEnd %}
   <li class="govuk-service-navigation__item" style="margin-left: auto;">
-    <a class="govuk-service-navigation__link" href="research-set-up/intro">Sign out</a>
+    <a class="govuk-service-navigation__link" href="menu">Sign out</a>
   </li>
 {% endset %}
 
@@ -22,7 +22,16 @@
 {% endblock %}
 
 {% block pageTitle %}
-Account home
+Get proof of your benefits and State Pension
+{% endblock %}
+
+{% block beforeContent %}
+  <ul class="dwp-language-toggle__list">
+    <li class="dwp-language-toggle__list-item" aria-current="true"> <span class="govuk-body-s"> English  </span></li>
+    <li class="dwp-language-toggle__list-item">    
+    <a href="#" hreflang="cy" lang="cy" rel="alternate" class="govuk-link--no-visited-state" aria-label="Newid yr iaith ir Gymraeg">Cymraeg</a>
+    </li>
+  </ul>
 {% endblock %}
 
 
