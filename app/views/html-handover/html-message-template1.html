@@ -1,0 +1,199 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {{ super() }}
+
+  <style>
+    .govuk-service-navigation__wrapper{
+        flex-grow: 1;
+    }
+</style>
+
+{% set navigationEnd %}
+  <li class="govuk-service-navigation__item" style="margin-left: auto;">
+    <a class="govuk-service-navigation__link" href="menu">Sign out</a>
+  </li>
+{% endset %}
+
+{{ govukServiceNavigation({
+  serviceName: "View your letters and messages",
+    slots: {navigationEnd: navigationEnd}
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+{Letter title}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+      text: "Back",
+      href: "inbox"
+  }) }}
+  
+  <ul class="dwp-language-toggle__list">
+    <li class="dwp-language-toggle__list-item" aria-current="true"> <span class="govuk-body-s"> English  </span></li>
+    <li class="dwp-language-toggle__list-item">    
+    <a href="#" hreflang="cy" lang="cy" rel="alternate" class="govuk-link--no-visited-state" aria-label="Newid yr iaith ir Gymraeg">Cymraeg</a>
+    </li>
+  </ul>
+
+  <div class="govuk-inset-text">
+        <h2 class="govuk-heading-s">If you need this message as a letter, you can download a copy.</h2>
+        <a class="govuk-link govuk-link--no-visited-state" href=" ">Download your {Letter title} (PDF, {DocSize} KB)</a>
+      </div>
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    
+      <div class="govuk-grid-column-two-thirds">
+
+        <div class="mobile-logo">
+          <img src="/public/images/dwp-logo.png" class="dwp-logo" alt=" ">
+          <br>
+          <br>
+        </div>
+        
+        <span class="govuk-caption-l">{messageCentreBenefit}({Acronym of messageCentreBenefit})</span>
+        <h1 class="govuk-heading-l">{Letter Title}</h1>
+        <p class="govuk-body">Message to {Customer} sent on {Date}</p>
+        <p class="govuk-body">Your reference number: {Customer Reference Number}</p>
+      </div>
+
+    <div class="govuk-grid-column-one-third">    
+      <div class="desktop-logo">
+        <div style ="display: flex; justify-content: flex-end;">
+          <img src="/public/images/DWP-logo.png" class="dwp-logo">
+        </div>
+      </div>
+    </div>
+    
+  
+
+    <div class="govuk-grid-column-full">
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    </div> 
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds"> 
+
+      <p class="govuk-body">{Main letter content}</p> 
+     
+       <h2 class="govuk-heading-m" id="contact-us">If you need to contact us</h2>
+        <p class="govuk-body">You can contact us by telephone on {Contact number}. If you contact us, we may ask you for:</p> 
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>your reference number - this is {Customer Reference Number}</li>
+        <li>the ID of this message - this is {Letter ID}</li>
+      </ul>
+
+      <br>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+      <h2 class="govuk-heading-l" id="next-steps-and-support">More information</h2>
+      <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+       
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                {Secondary content section header}
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+            <p class="govuk-body">{Section content}</p> 
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                {Secondary content section header}
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+            <p class="govuk-body">{Section content}</p> 
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <style>
+  .govuk-service-navigation__wrapper {
+    flex-grow: 1;
+  }
+
+  .dwp-logo {
+    width: 135px;
+    height: auto;
+    display: block;
+    filter: grayscale(100%)
+  }
+
+  .mobile-logo {
+    display: none;
+  }
+
+  .desktop-logo {
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .mobile-logo {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .mobile-logo .dwp-logo {
+      width: 90px;
+    }
+
+    .desktop-logo {
+      display: none;
+    }
+  }
+</style>
+
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (navType === 'reload') {
+      localStorage.clear();
+    }
+
+    const today = new Date ();
+    const formattedDate = today.toLocaleDateString('en-GB', {
+
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+
+    });
+
+    const dateColumns = document.querySelectorAll('.date-today');
+    dateColumns.forEach(column => {
+    column.textContent = formattedDate;
+
+    });
+
+    document.getElementById('date-today').textContent = formattedDate;
+
+    });
+  </script>
+
+{% endblock %}
+
+
