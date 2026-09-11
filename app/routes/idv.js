@@ -148,7 +148,7 @@ router.get('/idv/default/kbv-submit', (req, res) => {
   const idvHappy = req.session.data['idvHappy']
   if (nextKbvIndex < kbvArr.length) {
     // Go to next KBV
-    res.redirect(`/idv/default/kbv/${kbvArr[nextKbvIndex]}`)
+     res.redirect(url);
   } else {
     // Exit KBVs
     if (idvHappy === 'false') {

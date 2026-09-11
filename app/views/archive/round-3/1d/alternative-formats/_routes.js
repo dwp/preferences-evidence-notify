@@ -52,10 +52,7 @@ const checkAnswersOrDefault = (defaultNextStep, res) => {
     const _skipto = altFormats.skipToCheckAnswers
     delete altFormats.skipToCheckAnswers
 
-    res.redirect(_skipto)
-  } else {
-    res.redirect(defaultNextStep)
-  }
+    res.redirect(url);
 }
 
 /**
