@@ -34,7 +34,7 @@ repos:
           - --no-progress
           - --no-summary
         additional_dependencies:
-          - "@cspell/dict-en-gb@5.0.31"
+          - "@cspell/dict-en-gb@5.0.32"
         stages:
           - pre-commit
           - commit-msg
