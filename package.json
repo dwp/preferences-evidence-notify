@@ -14,7 +14,7 @@
     "@x-govuk/govuk-prototype-components": "3.1.0",
     "@x-govuk/govuk-prototype-filters": "1.5.0",
     "govuk-frontend": "5.14.0",
-    "govuk-prototype-kit": "13.20.4",
+    "govuk-prototype-kit": "13.20.5",
     "hmrc-frontend": "6.117.0",
     "jquery": "3.7.1"
   }
